@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listado de Doctores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Especialidad</th>
+      <th>Cedula</th>
+      <th>Direccion</th>
+      <th>Telefono1</th>
+      <th>Telefono2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doctors.each do |doctor| %>
+      <tr>
+        <td><%= doctor.nombre %></td>
+        <td><%= doctor.apellido %></td>
+        <td><%= doctor.especialidad %></td>
+        <td><%= doctor.cedula %></td>
+        <td><%= doctor.direccion %></td>
+        <td><%= doctor.telefono1 %></td>
+        <td><%= doctor.telefono2 %></td>
+        <td><%= link_to 'Mostrar', doctor %></td>
+        <td><%= link_to 'Editar', edit_doctor_path(doctor) %></td>
+        <td><%= link_to 'Borrar', doctor, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Agregar Doctor', new_doctor_path %>

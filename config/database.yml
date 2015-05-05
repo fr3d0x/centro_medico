@@ -1,0 +1,12 @@
+# Postgresql 
+#   gem install pg
+#
+#
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: centro_medico
+  pool: 5
+  username: postgres
+  password: 1234
+  owner: postgres

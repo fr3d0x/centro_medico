@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rec nemonico:</strong>
+  <%= @record.rec_nemonico %>
+</p>
+
+<p>
+  <strong>Rec descripcion:</strong>
+  <%= @record.rec_descripcion %>
+</p>
+
+<p>
+  <strong>Rec integer:</strong>
+  <%= @record.rec_integer %>
+</p>
+
+<p>
+  <strong>Rec char:</strong>
+  <%= @record.rec_char %>
+</p>
+
+<p>
+  <strong>Rec varchar:</strong>
+  <%= @record.rec_varchar %>
+</p>
+
+<p>
+  <strong>Rec float:</strong>
+  <%= @record.rec_float %>
+</p>
+
+<p>
+  <strong>Rec boolean:</strong>
+  <%= @record.rec_boolean %>
+</p>
+
+<p>
+  <strong>Rec fech:</strong>
+  <%= @record.rec_fech %>
+</p>
+
+<p>
+  <strong>Rec activo:</strong>
+  <%= @record.rec_activo %>
+</p>
+
+<p>
+  <strong>Table:</strong>
+  <%= @record.table %>
+</p>
+
+<%= link_to 'Editar', edit_record_path(@record) %> |
+<%= link_to 'Atras', records_path %>

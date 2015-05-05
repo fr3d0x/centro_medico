@@ -1,0 +1,7 @@
+
+<% if current_user.tipo == "medico" %>
+	<div><%= render 'doc_index' %></div>
+<%else%>
+	<div><%= render 'appointments' %></div>
+<%end%>
+<%= link_to 'Nueva Cita', new_appointment_path %>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CentroMedico</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media= 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+	<header>
+		<nav class="be-emerald white large-padding">
+		<% if user_signed_in? %>
+	  		En linea como <strong><%= current_user.nombre + ' ' + current_user.apellido %></strong>.
+	  		<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+	  		<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+	        <ul class="no-list row center-xs middle-xs">
+	          <li class= "col-md">
+	            <%= link_to "Citas del dia", citas_del_dia_appointments_path %>
+	          </li>
+	          <li class= "col-md">
+	            <%= link_to "Home", root_path %>
+	          </li>
+	          <li class= "col-md">
+	            <%= link_to "Agregar Paciente", new_patient_path%>
+	          </li>
+	          <li class= "col-md">
+	            <%= link_to "Buscar Pacientes", patients_path %> 
+	          </li>
+	          <li class= "col-md">
+	            <%= link_to "Agregar Cita", new_appointment_path %>
+	          </li>
+	        </ul>
+	          </nav>
+	    	<div class="user-box"> 
+			<h2>Bienvenido,  <%= current_user.nombre + ' ' + current_user.apellido %></h2>
+			<p class="alert"><%= alert %></p>
+			</div>
+		<% else %>
+		<li class= "col-md" style="align: right important!;">
+		  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> 
+		</li>
+		<li class= "col-md">
+		  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+		</li>
+		  </nav>
+		<% end %>        
+	</header>
+	<div class="box-ap">
+	<div class="field-ap">
+	<%= yield %>
+	</div>  
+	</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tab nombre:</strong>
+  <%= @table.tab_nombre %>
+</p>
+
+<p>
+  <strong>Tab nemonico:</strong>
+  <%= @table.tab_nemonico %>
+</p>
+
+<p>
+  <strong>Tab descripcion:</strong>
+  <%= @table.tab_descripcion %>
+</p>
+
+<%= link_to 'Editar', edit_table_path(@table) %> |
+<%= link_to 'Atras', tables_path %>

@@ -1,0 +1,143 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cedula:</strong>
+  <%= @patient.cedula %>
+</p>
+
+<p>
+  <strong>Num hist medica:</strong>
+  <%= @patient.num_hist_medica.to_s.rjust(4, '0') %>
+</p>
+
+<p>
+  <strong>Apellido:</strong>
+  <%= @patient.apellido %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @patient.nombre %>
+</p>
+
+<p>
+  <strong>Fecha nacimiento:</strong>
+  <%= @patient.fecha_nacimiento %>
+</p>
+
+<p>
+  <strong>Edad:</strong>
+  <%= @patient.edad %>
+</p>
+
+<p>
+  <strong>Fecha ingreso:</strong>
+  <%= @patient.fecha_ingreso %>
+</p>
+
+<p>
+  <strong>Estado civil:</strong>
+  <%= @patient.estado_civil %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @patient.telefono %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @patient.direccion %>
+</p>
+
+<div>
+<strong>Historial:</strong><br>
+  <p>
+  <strong>Tipo de sangre: </strong>
+  <%= @patient.medical_history.tipo_sangre %><br>
+  </p>
+  <p>
+  <strong>Peso: </strong>
+  <%= @patient.medical_history.peso %><br>
+  </p>
+  <p>
+  <strong>Altura: </strong>
+  <%= @patient.medical_history.altura %><br>
+  </p>
+  <p>
+  <strong>Posee alergias? </strong><br>
+    <%if (@patient.medical_history.posee_alergias==true)%>
+      <%= :si %>
+    <%else%>
+      <%= :no %>
+    <%end%>
+  </p>
+  <p>
+  <strong>Cuales son: </strong>
+  <%= @patient.medical_history.alergias %><br>
+  </p>
+  <p>
+  <strong>Es fumador?</strong><br>
+    <%if (@patient.medical_history.fumador==true)%>
+      <%= :si %>
+    <%else%>
+      <%= :no %>
+    <%end%>
+  </p>
+  <p>
+  <strong>Ocupacion: </strong>
+  <%= @patient.medical_history.ocupacion %><br>
+  </p>
+  <p>
+  <strong>Lesiones: </strong>
+  <%= @patient.medical_history.antecedentes_lesiones %><br>
+  </p>
+  <p>
+  <strong>Antecedentes familiares: </strong>
+  <%= @patient.medical_history.antecedentes_familiares %><br>
+  </p>
+  <p>
+  <strong>Condicion actual: </strong>
+  <%= @patient.medical_history.condicion_medica_actual %><br>
+  </p>
+  <p>
+  <strong>Cirugias: </strong>
+  <%= @patient.medical_history.cirugias %><br>
+  </p>
+  <p>
+  <strong>Tienes Sida? </strong><br>
+  <%if (@patient.medical_history.reg_its_sida==true)%>
+      <%= :si %>
+    <%else%>
+      <%= :no %>
+  <%end%>
+  </p>
+</div>
+
+<div>
+<strong>Medicos del paciente:</strong><br>
+  <ol>
+  <% @patient.doctors.uniq.each do |doctor| %>
+    <li><%= doctor.nombre %> <%= doctor.apellido %>, especialidad: <%= doctor.especialidad %></li>
+  <%end%>
+  </ol>
+</div>
+<div>
+<strong>Consultas:</strong><br>
+<ol>
+  <% @patient.appointments.each do |appointment| %>
+    <li><%= appointment.motivo %></li>
+    <ul>
+    <li><%= appointment.fecha %></li>
+    <li><%= appointment.hora %></li>
+    <li><%= appointment.doctor.nombre %></li>
+    <li><%= appointment.doctor.especialidad %></li>
+    </ul>
+  <%end%>
+</ol>
+</div><br><br>
+
+<%= link_to "Imprimir historial (pdf)", patient_path(@patient, :format => 'pdf') %><br>
+
+<%= link_to 'Editar', edit_patient_path(@patient) %> |
+<%= link_to 'Atras', patients_path %>

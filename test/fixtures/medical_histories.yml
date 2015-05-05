@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_sangre: MyString
+  peso: MyString
+  altura: MyString
+  posee_alergias: false
+  alergias: MyText
+  fumador: false
+  ocupacion: MyString
+  antecedentes_lesiones: MyText
+  antecedentes_familiares: MyText
+  condicion_medica_actual: MyText
+  cirugias: MyText
+  reg_its_sida: false
+
+two:
+  tipo_sangre: MyString
+  peso: MyString
+  altura: MyString
+  posee_alergias: false
+  alergias: MyText
+  fumador: false
+  ocupacion: MyString
+  antecedentes_lesiones: MyText
+  antecedentes_familiares: MyText
+  condicion_medica_actual: MyText
+  cirugias: MyText
+  reg_its_sida: false

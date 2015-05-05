@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listado de reportes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Motivo</th>
+      <th>Diagnostico</th>
+      <th>Tratamiento</th>
+      <th>Informe medico</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointment_reports.each do |appointment_report| %>
+      <tr>
+        <td><%= appointment_report.diagnostico %></td>
+        <td><%= appointment_report.tratamiento %></td>
+        <td><%= appointment_report.informe_medico %></td>
+        <td><%= link_to 'Show', appointment_report %></td>
+        <td><%= link_to 'Edit', edit_appointment_report_path(appointment_report) %></td>
+        <td><%= link_to 'Destroy', appointment_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Reporte', new_appointment_report_path %>

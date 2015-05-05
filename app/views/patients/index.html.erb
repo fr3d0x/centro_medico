@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag patients_path, :method => 'get', :id => "patients_search" do%>
+    <%= text_field_tag :search, params[:search], placeholder: "Buscar Paciente" %>
+    <%= submit_tag "buscar", :name => nil %>
+<%end%>
+  
+  <div id = "patients"><%= render 'patients' %></div>
+

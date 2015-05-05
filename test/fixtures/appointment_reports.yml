@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  motivo: MyText
+  diagnostico: MyText
+  tratamiento: MyText
+  informe_medico: MyText
+
+two:
+  motivo: MyText
+  diagnostico: MyText
+  tratamiento: MyText
+  informe_medico: MyText

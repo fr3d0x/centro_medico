@@ -1,0 +1,10 @@
+I"Ó(function() {
+  $(function() {
+    $('#patientss_search input').keyup(function() {
+      $.get(this.action, $("#patientss_search").serialize(), null, 'script');
+      return false;
+    });
+  });
+
+}).call(this);
+:ET

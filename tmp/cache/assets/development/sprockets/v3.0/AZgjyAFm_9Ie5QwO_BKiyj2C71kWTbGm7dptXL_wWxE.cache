@@ -1,0 +1,15 @@
+I"=(function() {
+  var ready;
+
+  ready = function() {
+    $('#patients_search input').keyup(function() {
+      $.get(this.action, $("#patients_search").serialize(), null, 'script');
+      return false;
+    });
+    return;
+    $(document).ready(ready);
+    return $(document).on('page:load', ready);
+  };
+
+}).call(this);
+:ET

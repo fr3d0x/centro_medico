@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Diagnostico:</strong>
+  <%= @appointment_report.diagnostico %>
+</p>
+
+<p>
+  <strong>Tratamiento:</strong>
+  <%= @appointment_report.tratamiento %>
+</p>
+
+<p>
+  <strong>Informe medico:</strong>
+  <%= @appointment_report.informe_medico %>
+</p><br><br>
+
+<%= link_to "Imprimir Informe medico (pdf)", appointment_report_path( @appointment_report, :format => 'pdf') %> |
+<%= link_to 'Editar Reporte', edit_appointment_report_path(@appointment_report) %> |
+<%= link_to 'Back', appointments_path %>

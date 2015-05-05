@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rec_nemonico: MyString
+  rec_descripcion: MyText
+  rec_integer: 1
+  rec_char: MyString
+  rec_varchar: MyString
+  rec_float: 1.5
+  rec_boolean: false
+  rec_fech: 2015-05-01
+  rec_activo: false
+  table_id: 
+
+two:
+  rec_nemonico: MyString
+  rec_descripcion: MyText
+  rec_integer: 1
+  rec_char: MyString
+  rec_varchar: MyString
+  rec_float: 1.5
+  rec_boolean: false
+  rec_fech: 2015-05-01
+  rec_activo: false
+  table_id: 
