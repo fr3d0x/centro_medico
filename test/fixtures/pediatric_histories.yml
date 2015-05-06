@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  edad: MyString
+  genero: MyString
+  peso: MyString
+  talla: MyString
+  lugar_nacimiento: MyString
+  lugar_residencia: MyString
+  padre: MyString
+  madre: MyString
+  diagnostico_familiar: MyText
+  antecedentes_pre-natales: MyText
+  antecedentes_natales: MyText
+  antecedentes_port-natales: MyText
+  sintomas_generales: MyText
+
+two:
+  edad: MyString
+  genero: MyString
+  peso: MyString
+  talla: MyString
+  lugar_nacimiento: MyString
+  lugar_residencia: MyString
+  padre: MyString
+  madre: MyString
+  diagnostico_familiar: MyText
+  antecedentes_pre-natales: MyText
+  antecedentes_natales: MyText
+  antecedentes_port-natales: MyText
+  sintomas_generales: MyText

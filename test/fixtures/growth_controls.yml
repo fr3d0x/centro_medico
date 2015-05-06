@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2015-05-06
+  edad: MyString
+  peso: MyString
+  talla: MyString
+
+two:
+  fecha: 2015-05-06
+  edad: MyString
+  peso: MyString
+  talla: MyString

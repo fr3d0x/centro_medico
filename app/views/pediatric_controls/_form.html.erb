@@ -1,0 +1,113 @@
+<%= form_for(@pediatric_control) do |f| %>
+  <% if @pediatric_control.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pediatric_control.errors.count, "error") %> prohibited this pediatric_control from being saved:</h2>
+
+      <ul>
+      <% @pediatric_control.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :pediatric_history_id %>
+  <div class="field">
+    <%= f.label :bcg1 %><br>
+    <%= f.date_field :bcg1 %>
+  </div>
+  <div class="field">
+    <%= f.label :bcg2 %><br>
+    <%= f.date_field :bcg2 %>
+  </div>
+  <div class="field">
+    <%= f.label :bcg3 %><br>
+    <%= f.date_field :bcg3 %>
+  </div>
+  <div class="field">
+    <%= f.label :triple1 %><br>
+    <%= f.date_field :triple1 %>
+  </div>
+  <div class="field">
+    <%= f.label :triple2 %><br>
+    <%= f.date_field :triple2 %>
+  </div>
+  <div class="field">
+    <%= f.label :triple3 %><br>
+    <%= f.date_field :triple3 %>
+  </div>
+  <div class="field">
+    <%= f.label :ref_triple1 %><br>
+    <%= f.date_field :ref_triple1 %>
+  </div>
+  <div class="field">
+    <%= f.label :ref_triple2 %><br>
+    <%= f.date_field :ref_triple2 %>
+  </div>
+  <div class="field">
+    <%= f.label :ref_triple3 %><br>
+    <%= f.date_field :ref_triple3 %>
+  </div>
+  <div class="field">
+    <%= f.label :polio1 %><br>
+    <%= f.date_field :polio1 %>
+  </div>
+  <div class="field">
+    <%= f.label :polio2 %><br>
+    <%= f.date_field :polio2 %>
+  </div>
+  <div class="field">
+    <%= f.label :polio3 %><br>
+    <%= f.date_field :polio3 %>
+  </div>
+  <div class="field">
+    <%= f.label :ref_polio1 %><br>
+    <%= f.date_field :ref_polio1 %>
+  </div>
+  <div class="field">
+    <%= f.label :ref_polio2 %><br>
+    <%= f.date_field :ref_polio2 %>
+  </div>
+  <div class="field">
+    <%= f.label :ref_polio3 %><br>
+    <%= f.date_field :ref_polio3 %>
+  </div>
+  <div class="field">
+    <%= f.label :sarampion %><br>
+    <%= f.date_field :sarampion %>
+  </div>
+  <div class="field">
+    <%= f.label :parotiditis %><br>
+    <%= f.date_field :parotiditis %>
+  </div>
+  <div class="field">
+    <%= f.label :rubeola %><br>
+    <%= f.date_field :rubeola %>
+  </div>
+  <div class="field">
+    <%= f.label :f_amarilla %><br>
+    <%= f.date_field :f_amarilla %>
+  </div>
+  <div class="field">
+    <%= f.label :trivalente %><br>
+    <%= f.date_field :trivalente %>
+  </div>
+  <div class="field">
+    <%= f.label :otras %><br>
+    <%= f.text_area :otras %>
+  </div>
+  <div class="field">
+    <%= f.label :observaciones %><br>
+    <%= f.text_area :observaciones %>
+  </div>
+  <div class = "field">
+    <%= f.fields_for :growth_controls do |builder| %>
+      <%= render 'growth_control_fields', f: builder %>
+    <%end%>
+  <div>
+    <%= link_to_add_fields "Agregar Control de Crecimiento",f, :growth_controls  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

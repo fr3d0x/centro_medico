@@ -1,0 +1,33 @@
+<%= form_for(@growth_control) do |f| %>
+  <% if @growth_control.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@growth_control.errors.count, "error") %> prohibited this growth_control from being saved:</h2>
+
+      <ul>
+      <% @growth_control.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.date_select :fecha %>
+  </div>
+  <div class="field">
+    <%= f.label :edad %><br>
+    <%= f.text_field :edad %>
+  </div>
+  <div class="field">
+    <%= f.label :peso %><br>
+    <%= f.text_field :peso %>
+  </div>
+  <div class="field">
+    <%= f.label :talla %><br>
+    <%= f.text_field :talla %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

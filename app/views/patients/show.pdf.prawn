@@ -46,10 +46,14 @@ doctores.each do |doctor|
 end
 pdf.move_down(30)
 pdf.text "Consultas del paciente #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
+i = 1
 consultas = @patient.appointments
 consultas.each do |consulta|
+  i
+  pdf.text "#{i}.-"
 	pdf.text "fecha: #{consulta.fecha}"
 	pdf.text "motivo: #{consulta.motivo}"
 	pdf.text "doctor: #{consulta.doctor.nombre + ' ' + consulta.doctor.apellido + ', ' + 'especialidad: '+ consulta.doctor.especialidad}"
-	pdf.move_down(15)
+	i = i+1
+  pdf.move_down(15)
 end

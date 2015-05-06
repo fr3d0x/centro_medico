@@ -1,0 +1,69 @@
+<%= form_for(@pediatric_history) do |f| %>
+  <% if @pediatric_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pediatric_history.errors.count, "error") %> prohibited this pediatric_history from being saved:</h2>
+
+      <ul>
+      <% @pediatric_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :edad %><br>
+    <%= f.text_field :edad %>
+  </div>
+  <div class="field">
+    <%= f.label :genero %><br>
+    <%= f.text_field :genero %>
+  </div>
+  <div class="field">
+    <%= f.label :peso %><br>
+    <%= f.text_field :peso %>
+  </div>
+  <div class="field">
+    <%= f.label :talla %><br>
+    <%= f.text_field :talla %>
+  </div>
+  <div class="field">
+    <%= f.label :lugar_nacimiento %><br>
+    <%= f.text_field :lugar_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :lugar_residencia %><br>
+    <%= f.text_field :lugar_residencia %>
+  </div>
+  <div class="field">
+    <%= f.label :padre %><br>
+    <%= f.text_field :padre %>
+  </div>
+  <div class="field">
+    <%= f.label :madre %><br>
+    <%= f.text_field :madre %>
+  </div>
+  <div class="field">
+    <%= f.label :diagnostico_familiar %><br>
+    <%= f.text_area :diagnostico_familiar %>
+  </div>
+  <div class="field">
+    <%= f.label :antecedentes_prenatales %><br>
+    <%= f.text_area :antecedentes_prenatales %>
+  </div>
+  <div class="field">
+    <%= f.label :antecedentes_natales %><br>
+    <%= f.text_area :antecedentes_natales %>
+  </div>
+  <div class="field">
+    <%= f.label :antecedentes_postnatales %><br>
+    <%= f.text_area :antecedentes_postnatales %>
+  </div>
+  <div class="field">
+    <%= f.label :sintomas_generales %><br>
+    <%= f.text_area :sintomas_generales %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

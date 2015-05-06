@@ -16,8 +16,16 @@
 //= require jquery.turbolinks
 //= require_tree .
 
-$(".checkbox").on('change', function(){
+$(document).on('click', 'form .remove_fields', function(event) {
+  $(this).prev('input[type=hidden]').val('1');
+  $(this).closest('fieldset').hide();
+  return event.preventDefault();
+});
 
-   $(this).next("div").toggle();    
-
+$(document).on('click', 'form .add_fields', function(event) {
+  var regexp, time;
+  time = new Date().getTime();
+  regexp = new RegExp($(this).data('id'), 'g');
+  $(this).before($(this).data('fields').replace(regexp, time));
+  return event.preventDefault();
 });

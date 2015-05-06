@@ -6,19 +6,23 @@ class AppointmentsController < ApplicationController
   def index
     if current_user.tipo == "medico"
       doctor = Doctor.find_by(user_id: current_user.id)
-      @appointments = Appointment.where(doctor_id: doctor.id)
+      @appointments = Appointment.where(doctor_id: doctor.id).order(:hora).paginate(:per_page => 6, :page => params[:page])
     else
-      @appointments = Appointment.all
+      @appointments = Appointment.all.order(:hora).paginate(:per_page => 4, :page => params[:page])
     end
   end
 
   def citas_del_dia
     if current_user.tipo == "medico"
       doctor = Doctor.find_by(user_id: current_user.id)
-      @appointments = Appointment.where("fecha = ? AND doctor_id = ?", DateTime.now.to_date, doctor.id).order(:hora)
+      @appointments = Appointment.where("fecha = ? AND doctor_id = ?", DateTime.now.to_date, doctor.id).order(:hora).paginate(:per_page => 4, :page => params[:page])
     else
-      @appointments = Appointment.where(fecha: DateTime.now.to_date).order(:hora)
+      @appointments = Appointment.where(fecha: DateTime.now.to_date).order(:hora).paginate(:per_page => 4, :page => params[:page])
     end
+  end
+
+  def citas_por_doctor
+    @appointments = Appointment.where("fecha >= ? AND doctor_id = ?", DateTime.now.to_date, params[:doctor_id]).order(:fecha).order(:hora).paginate(:per_page => 4, :page => params[:page])
   end
   # GET /appointments/1
   # GET /appointments/1.json

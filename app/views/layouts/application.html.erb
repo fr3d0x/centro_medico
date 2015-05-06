@@ -32,6 +32,9 @@
 	          <li class= "col-md">
 	            <%= link_to "Agregar Cita", new_appointment_path %>
 	          </li>
+	          <li class= "col-md">
+	            <%= link_to "Buscar Doctor", doctors_path %>
+	          </li>
 	        </ul>
 	          </nav>
 	    	<div class="user-box"> 
@@ -39,7 +42,7 @@
 			<p class="alert"><%= alert %></p>
 			</div>
 		<% else %>
-		<li class= "col-md" style="align: right important!;">
+		<li class= "col-md">
 		  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> 
 		</li>
 		<li class= "col-md">

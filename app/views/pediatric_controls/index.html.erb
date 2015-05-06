@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pediatric Controls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>B.c.g1</th>
+      <th>B.c.g2</th>
+      <th>B.c.g3</th>
+      <th>Triple1</th>
+      <th>Triple2</th>
+      <th>Triple3</th>
+      <th>Ref triple1</th>
+      <th>Ref triple2</th>
+      <th>Ref triple3</th>
+      <th>Polio1</th>
+      <th>Polio2</th>
+      <th>Polio3</th>
+      <th>Ref polio1</th>
+      <th>Ref polio2</th>
+      <th>Ref polio3</th>
+      <th>Sarampion</th>
+      <th>Parotiditis</th>
+      <th>Rubeola</th>
+      <th>F amarilla</th>
+      <th>Trivalente</th>
+      <th>Otras</th>
+      <th>Observaciones</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pediatric_controls.each do |pediatric_control| %>
+      <tr>
+        <td><%= pediatric_control.bcg1 %></td>
+        <td><%= pediatric_control.bcg2 %></td>
+        <td><%= pediatric_control.bcg3 %></td>
+        <td><%= pediatric_control.triple1 %></td>
+        <td><%= pediatric_control.triple2 %></td>
+        <td><%= pediatric_control.triple3 %></td>
+        <td><%= pediatric_control.ref_triple1 %></td>
+        <td><%= pediatric_control.ref_triple2 %></td>
+        <td><%= pediatric_control.ref_triple3 %></td>
+        <td><%= pediatric_control.polio1 %></td>
+        <td><%= pediatric_control.polio2 %></td>
+        <td><%= pediatric_control.polio3 %></td>
+        <td><%= pediatric_control.ref_polio1 %></td>
+        <td><%= pediatric_control.ref_polio2 %></td>
+        <td><%= pediatric_control.ref_polio3 %></td>
+        <td><%= pediatric_control.sarampion %></td>
+        <td><%= pediatric_control.parotiditis %></td>
+        <td><%= pediatric_control.rubeola %></td>
+        <td><%= pediatric_control.f_amarilla %></td>
+        <td><%= pediatric_control.trivalente %></td>
+        <td><%= pediatric_control.otras %></td>
+        <td><%= pediatric_control.observaciones %></td>
+        <td><%= link_to 'Show', pediatric_control %></td>
+        <td><%= link_to 'Edit', edit_pediatric_control_path(pediatric_control) %></td>
+        <td><%= link_to 'Destroy', pediatric_control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pediatric control', new_pediatric_control_path %>

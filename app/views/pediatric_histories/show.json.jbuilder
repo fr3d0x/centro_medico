@@ -1,0 +1,1 @@
+json.extract! @pediatric_history, :id, :edad, :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :madre, :diagnostico_familiar, :antecedentes_pre-natales, :antecedentes_natales, :antecedentes_port-natales, :sintomas_generales, :created_at, :updated_at

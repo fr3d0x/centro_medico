@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @pediatric_patient.nombre %>
+</p>
+
+<p>
+  <strong>Apellido:</strong>
+  <%= @pediatric_patient.apellido %>
+</p>
+
+<p>
+  <strong>Fecha nacimiento:</strong>
+  <%= @pediatric_patient.fecha_nacimiento %>
+</p>
+
+<p>
+  <strong>Fecha ingreso:</strong>
+  <%= @pediatric_patient.fecha_ingreso %>
+</p>
+
+<p>
+  <strong>Telefono padre:</strong>
+  <%= @pediatric_patient.telefono_padre %>
+</p>
+
+<p>
+  <strong>Telefono madre:</strong>
+  <%= @pediatric_patient.telefono_madre %>
+</p>
+
+<%= link_to 'Edit', edit_pediatric_patient_path(@pediatric_patient) %> |
+<%= link_to 'Back', pediatric_patients_path %>

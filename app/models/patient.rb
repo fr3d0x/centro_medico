@@ -1,6 +1,7 @@
 class Patient < ActiveRecord::Base
 	has_one :medical_history, :dependent => :destroy, :autosave => true
 	accepts_nested_attributes_for :medical_history
+	has_one :pediatric_history
 	has_many :appointments, :dependent => :destroy
 	has_many :doctors, :through => :appointments
 

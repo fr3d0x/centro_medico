@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501213636) do
+ActiveRecord::Schema.define(version: 20150506044150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,18 @@ ActiveRecord::Schema.define(version: 20150501213636) do
 
   add_index "doctors", ["user_id"], name: "index_doctors_on_user_id", using: :btree
 
+  create_table "growth_controls", force: :cascade do |t|
+    t.date     "fecha"
+    t.string   "edad"
+    t.string   "peso"
+    t.string   "talla"
+    t.integer  "pediatric_control_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "growth_controls", ["pediatric_control_id"], name: "index_growth_controls_on_pediatric_control_id", using: :btree
+
   create_table "medical_histories", force: :cascade do |t|
     t.string   "tipo_sangre"
     t.string   "peso"
@@ -92,6 +104,70 @@ ActiveRecord::Schema.define(version: 20150501213636) do
     t.string   "estado_civil"
     t.string   "telefono"
     t.text     "direccion"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "pediatric_controls", force: :cascade do |t|
+    t.date     "bcg1"
+    t.date     "bcg2"
+    t.date     "bcg3"
+    t.date     "triple1"
+    t.date     "triple2"
+    t.date     "triple3"
+    t.date     "ref_triple1"
+    t.date     "ref_triple2"
+    t.date     "ref_triple3"
+    t.date     "polio1"
+    t.date     "polio2"
+    t.date     "polio3"
+    t.date     "ref_polio1"
+    t.date     "ref_polio2"
+    t.date     "ref_polio3"
+    t.date     "sarampion"
+    t.date     "parotiditis"
+    t.date     "rubeola"
+    t.date     "f_amarilla"
+    t.date     "trivalente"
+    t.text     "otras"
+    t.text     "observaciones"
+    t.integer  "pediatric_history_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "pediatric_controls", ["pediatric_history_id"], name: "index_pediatric_controls_on_pediatric_history_id", using: :btree
+
+  create_table "pediatric_histories", force: :cascade do |t|
+    t.string   "edad"
+    t.string   "genero"
+    t.string   "peso"
+    t.string   "talla"
+    t.string   "lugar_nacimiento"
+    t.string   "lugar_residencia"
+    t.string   "padre"
+    t.string   "madre"
+    t.text     "diagnostico_familiar"
+    t.text     "antecedentes_prenatales"
+    t.text     "antecedentes_natales"
+    t.text     "antecedentes_postnatales"
+    t.text     "sintomas_generales"
+    t.integer  "pediatric_patient_id"
+    t.integer  "patient_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "pediatric_histories", ["patient_id"], name: "index_pediatric_histories_on_patient_id", using: :btree
+  add_index "pediatric_histories", ["pediatric_patient_id"], name: "index_pediatric_histories_on_pediatric_patient_id", using: :btree
+
+  create_table "pediatric_patients", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "apellido"
+    t.date     "fecha_nacimiento"
+    t.date     "fecha_ingreso"
+    t.string   "telefono_padre"
+    t.string   "telefono_madre"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -147,6 +223,10 @@ ActiveRecord::Schema.define(version: 20150501213636) do
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
   add_foreign_key "doctors", "users"
+  add_foreign_key "growth_controls", "pediatric_controls"
   add_foreign_key "medical_histories", "patients"
+  add_foreign_key "pediatric_controls", "pediatric_histories"
+  add_foreign_key "pediatric_histories", "patients"
+  add_foreign_key "pediatric_histories", "pediatric_patients"
   add_foreign_key "records", "tables"
 end

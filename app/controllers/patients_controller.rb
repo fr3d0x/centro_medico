@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.search(params[:search])
+    @patients = Patient.search(params[:search]).paginate(:per_page => 6, :page => params[:page])
   end
 
   # GET /patients/1
@@ -21,6 +21,10 @@ class PatientsController < ApplicationController
 
   # GET /patients/1/edit
   def edit
+    if @patient.medical_history == nil
+      @patient.build_medical_history
+      @patient.num_hist_medica = @patient.medical_history.id
+    end
   end
 
   # POST /patients

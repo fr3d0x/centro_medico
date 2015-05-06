@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pediatric Patients</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Fecha nacimiento</th>
+      <th>Fecha ingreso</th>
+      <th>Telefono padre</th>
+      <th>Telefono madre</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pediatric_patients.each do |pediatric_patient| %>
+      <tr>
+        <td><%= pediatric_patient.nombre %></td>
+        <td><%= pediatric_patient.apellido %></td>
+        <td><%= pediatric_patient.fecha_nacimiento %></td>
+        <td><%= pediatric_patient.fecha_ingreso %></td>
+        <td><%= pediatric_patient.telefono_padre %></td>
+        <td><%= pediatric_patient.telefono_madre %></td>
+        <td><%= link_to 'Show', pediatric_patient %></td>
+        <td><%= link_to 'Edit', edit_pediatric_patient_path(pediatric_patient) %></td>
+        <%if pediatric_patient.pediatric_history.pediatric_control %>
+          <td><%= link_to 'Actualizar Control', edit_pediatric_control_path(pediatric_patient.pediatric_history.pediatric_control) %></td>
+        <%else%>
+          <td><%= link_to 'Generar Control', new_pediatric_control_path(pediatric_history_id: pediatric_patient.pediatric_history.id) %></td>
+        <%end%>
+        <td><%= link_to 'Ya es mayor', ya_es_mayor_pediatric_patients_path(id: pediatric_patient.id)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pediatric patient', new_pediatric_patient_path %>

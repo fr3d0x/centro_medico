@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pediatric Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edad</th>
+      <th>Genero</th>
+      <th>Peso</th>
+      <th>Talla</th>
+      <th>Lugar nacimiento</th>
+      <th>Lugar residencia</th>
+      <th>Padre</th>
+      <th>Madre</th>
+      <th>Diagnostico familiar</th>
+      <th>Antecedentes pre-natales</th>
+      <th>Antecedentes natales</th>
+      <th>Antecedentes post-natales</th>
+      <th>Sintomas generales</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pediatric_histories.each do |pediatric_history| %>
+      <tr>
+        <td><%= pediatric_history.edad %></td>
+        <td><%= pediatric_history.genero %></td>
+        <td><%= pediatric_history.peso %></td>
+        <td><%= pediatric_history.talla %></td>
+        <td><%= pediatric_history.lugar_nacimiento %></td>
+        <td><%= pediatric_history.lugar_residencia %></td>
+        <td><%= pediatric_history.padre %></td>
+        <td><%= pediatric_history.madre %></td>
+        <td><%= pediatric_history.diagnostico_familiar %></td>
+        <td><%= pediatric_history.antecedentes_prenatales %></td>
+        <td><%= pediatric_history.antecedentes_natales %></td>
+        <td><%= pediatric_history.antecedentes_postnatales %></td>
+        <td><%= pediatric_history.sintomas_generales %></td>
+        <td><%= link_to 'Show', pediatric_history %></td>
+        <td><%= link_to 'Edit', edit_pediatric_history_path(pediatric_history) %></td>
+        <td><%= link_to 'Destroy', pediatric_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pediatric history', new_pediatric_history_path %>

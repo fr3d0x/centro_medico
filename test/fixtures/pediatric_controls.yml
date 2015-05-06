@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  b.c.g1: 2015-05-06
+  b.c.g2: 2015-05-06
+  b.c.g3: 2015-05-06
+  triple1: 2015-05-06
+  triple2: 2015-05-06
+  triple3: 2015-05-06
+  ref_triple1: 2015-05-06
+  ref_triple2: 2015-05-06
+  ref_triple3: 2015-05-06
+  polio1: 2015-05-06
+  polio2: 2015-05-06
+  polio3: 2015-05-06
+  ref_polio1: 2015-05-06
+  ref_polio2: 2015-05-06
+  ref_polio3: 2015-05-06
+  sarampion: 2015-05-06
+  parotiditis: 2015-05-06
+  rubeola: 2015-05-06
+  f_amarilla: 2015-05-06
+  trivalente: 2015-05-06
+  otras: MyText
+  observaciones: MyText
+
+two:
+  b.c.g1: 2015-05-06
+  b.c.g2: 2015-05-06
+  b.c.g3: 2015-05-06
+  triple1: 2015-05-06
+  triple2: 2015-05-06
+  triple3: 2015-05-06
+  ref_triple1: 2015-05-06
+  ref_triple2: 2015-05-06
+  ref_triple3: 2015-05-06
+  polio1: 2015-05-06
+  polio2: 2015-05-06
+  polio3: 2015-05-06
+  ref_polio1: 2015-05-06
+  ref_polio2: 2015-05-06
+  ref_polio3: 2015-05-06
+  sarampion: 2015-05-06
+  parotiditis: 2015-05-06
+  rubeola: 2015-05-06
+  f_amarilla: 2015-05-06
+  trivalente: 2015-05-06
+  otras: MyText
+  observaciones: MyText

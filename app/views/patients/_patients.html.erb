@@ -1,5 +1,5 @@
 
-<h1>Listing Patients</h1>
+<h1>Listado de Pacientes</h1>
 
 <table>
   <thead>
@@ -22,7 +22,7 @@
     <% @patients.each do |patient| %>
       <tr>
         <td><%= patient.cedula %></td>
-        <td><%= patient.num_hist_medica %></td>
+        <td><%= patient.num_hist_medica.to_s.rjust(4, '0') %></td>
         <td><%= patient.apellido %></td>
         <td><%= patient.nombre %></td>
         <td><%= patient.fecha_nacimiento %></td>
@@ -31,12 +31,14 @@
         <td><%= patient.estado_civil %></td>
         <td><%= patient.telefono %></td>
         <td><%= patient.direccion %></td>
-        <td><%= link_to 'Show', patient %></td>
-        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', patient %></td>
+        <td><%= link_to 'Editar', edit_patient_path(patient) %></td>
+        <td><%= link_to 'Borrar', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @patients %>
 
 <br>

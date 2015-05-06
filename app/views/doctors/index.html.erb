@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<%= form_tag doctors_path, :method => 'get', :id => "doctors_search" do%>
+    <%= text_field_tag :search, params[:search], placeholder: "Buscar Doctor" %>
+    <%= submit_tag "buscar", :name => nil %>
+<%end%>
+
 <h1>Listado de Doctores</h1>
 
 <table>
@@ -27,13 +32,15 @@
         <td><%= doctor.telefono1 %></td>
         <td><%= doctor.telefono2 %></td>
         <td><%= link_to 'Mostrar', doctor %></td>
-        <td><%= link_to 'Editar', edit_doctor_path(doctor) %></td>
-        <td><%= link_to 'Borrar', doctor, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+        <td><%= link_to 'Editar datos personales', edit_doctor_path(doctor) %></td>
+        <td><%= link_to 'Citas', citas_por_doctor_appointments_path(doctor_id: doctor.id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<%= will_paginate @doctors %>
 
 <%= link_to 'Agregar Doctor', new_doctor_path %>

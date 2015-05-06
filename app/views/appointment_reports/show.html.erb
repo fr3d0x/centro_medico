@@ -15,6 +15,6 @@
   <%= @appointment_report.informe_medico %>
 </p><br><br>
 
-<%= link_to "Imprimir Informe medico (pdf)", appointment_report_path( @appointment_report, :format => 'pdf') %> |
+<%= link_to "Imprimir Informe medico (pdf)", appointment_report_path( @appointment_report, :format => 'pdf'), target: "_blank" %> |
 <%= link_to 'Editar Reporte', edit_appointment_report_path(@appointment_report) %> |
 <%= link_to 'Back', appointments_path %>

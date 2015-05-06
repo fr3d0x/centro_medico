@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :growth_controls
+
+  resources :pediatric_controls
+
+  resources :pediatric_histories
+
+  resources :pediatric_patients do
+    collection do
+      get :ya_es_mayor
+    end
+  end
+
   resources :medical_histories
 
   devise_for :users, controllers: {registrations: 'registrations'}
@@ -20,6 +32,8 @@ Rails.application.routes.draw do
       post :doc_index
       get :citas_del_dia
       post :citas_del_dia
+      get :citas_por_doctor
+      post :citas_por_doctor
     end
   end
 

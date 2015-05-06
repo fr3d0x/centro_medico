@@ -1,0 +1,46 @@
+<%= form_for(@pediatric_patient) do |f| %>
+  <% if @pediatric_patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pediatric_patient.errors.count, "error") %> prohibited this pediatric_patient from being saved:</h2>
+
+      <ul>
+      <% @pediatric_patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido %><br>
+    <%= f.text_field :apellido %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_nacimiento %><br>
+    <%= f.date_field :fecha_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_ingreso %><br>
+    <%= f.date_field :fecha_ingreso %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_padre %><br>
+    <%= f.text_field :telefono_padre %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_madre %><br>
+    <%= f.text_field :telefono_madre %>
+  </div>
+  <div class="field">
+    <%= f.fields_for :pediatric_history do |builder| %>
+    <%= render 'pediatric_history_fields', f: builder %>
+  <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
