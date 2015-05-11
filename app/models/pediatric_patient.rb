@@ -1,5 +1,6 @@
 class PediatricPatient < ActiveRecord::Base
 	has_one :pediatric_history, :dependent => :destroy
+	has_one :pediatric_appointment, :dependent => :destroy
 	accepts_nested_attributes_for :pediatric_history
 
 	private
@@ -11,5 +12,11 @@ class PediatricPatient < ActiveRecord::Base
 		hist_pediatrico.update_attribute(:patient_id, nuevo_paciente.id)
 		record.destroy
 		return nuevo_paciente
+	end
+
+	def self.search(search)
+		hist_med = PediatricHistory.find_by!("ced_madre = ? OR ced_padre = ?", "%#{search}%", "%#{search}%")
+		paciente = hist_med.pediatric_patient
+		return paciente
 	end
 end

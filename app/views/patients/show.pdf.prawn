@@ -26,7 +26,6 @@ if (@patient.medical_history.fumador==true)
 else
   fuma = "no"
 end
-pdf.text "Fuma?: #{fuma}"
 pdf.text "Ocupacion: #{@patient.medical_history.ocupacion}"
 pdf.text "Lesiones: #{@patient.medical_history.antecedentes_lesiones}"
 pdf.text "Antecedentes Familiares: #{@patient.medical_history.antecedentes_familiares}"

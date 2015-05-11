@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Responsable:</strong>
+  <%= @pediatric_appointment.responsable %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @pediatric_appointment.telefono %>
+</p>
+
+<p>
+  <strong>Relacion:</strong>
+  <%= @pediatric_appointment.relacion %>
+</p>
+
+<p>
+  <strong>Patients:</strong>
+  <%= @pediatric_appointment.patients %>
+</p>
+
+<p>
+  <strong>Pediatric patients:</strong>
+  <%= @pediatric_appointment.pediatric_patients %>
+</p>
+
+<%= link_to 'Edit', edit_pediatric_appointment_path(@pediatric_appointment) %> |
+<%= link_to 'Back', pediatric_appointments_path %>

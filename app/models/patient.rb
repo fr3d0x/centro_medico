@@ -20,4 +20,8 @@ class Patient < ActiveRecord::Base
 	    self.all
 	  end
 	end
+	def self.existente(string)
+		paciente = find_by(cedula: string)
+		return paciente
+	end
 end

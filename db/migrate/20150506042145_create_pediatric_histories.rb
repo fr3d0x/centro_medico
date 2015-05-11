@@ -8,7 +8,9 @@ class CreatePediatricHistories < ActiveRecord::Migration
       t.string :lugar_nacimiento
       t.string :lugar_residencia
       t.string :padre
+      t.string :ced_padre
       t.string :madre
+      t.string :ced_madre
       t.text :diagnostico_familiar
       t.text :antecedentes_prenatales
       t.text :antecedentes_natales

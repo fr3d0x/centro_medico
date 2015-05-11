@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pediatric Appointments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Responsable</th>
+      <th>Telefono</th>
+      <th>Relacion</th>
+      <th>Patients</th>
+      <th>Pediatric patients</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pediatric_appointments.each do |pediatric_appointment| %>
+      <tr>
+        <td><%= pediatric_appointment.responsable %></td>
+        <td><%= pediatric_appointment.telefono %></td>
+        <td><%= pediatric_appointment.relacion %></td>
+        <td><%= pediatric_appointment.patients %></td>
+        <td><%= pediatric_appointment.pediatric_patients %></td>
+        <td><%= link_to 'Show', pediatric_appointment %></td>
+        <td><%= link_to 'Edit', edit_pediatric_appointment_path(pediatric_appointment) %></td>
+        <td><%= link_to 'Destroy', pediatric_appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pediatric appointment', new_pediatric_appointment_path %>

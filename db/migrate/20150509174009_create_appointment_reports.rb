@@ -5,9 +5,11 @@ class CreateAppointmentReports < ActiveRecord::Migration
       t.text :tratamiento
       t.text :informe_medico
       t.references :appointment, index: true
+      t.references :pediatric_appointment, index: true
       
       t.timestamps null: false
     end
   add_foreign_key :appointment_reports, :appointments
+  add_foreign_key :appointment_reports, :pediatric_appointments
   end
 end

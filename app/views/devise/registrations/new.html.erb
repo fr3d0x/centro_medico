@@ -14,8 +14,8 @@
   </div>  
 
   <div class="field">
-    <%= f.label :tipo %><br />
-    <%= f.text_field :tipo %>
+    <%= f.label :tipo %><br>
+    <%= f.collection_select(:tipo, @registros.buscar_tabla(2) , :rec_char, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
   </div>
 
   <div class="field">

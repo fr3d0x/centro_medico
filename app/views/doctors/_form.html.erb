@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :especialidad %><br>
-    <%= f.text_field :especialidad %>
+    <%= f.collection_select(:especialidad, @registros.buscar_tabla(1) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
   </div>
   <div class="field">
     <%= f.label :cedula %><br>

@@ -29,11 +29,6 @@
         <%else%>
           <td><%= 'calcelada' %></td>
         <%end%>
-        <%if (appointment.menor==true)%>
-          <td><%= 'si' %></td>
-        <%else%>
-          <td><%= 'no' %></td>
-        <%end%>
         <td><%= link_to 'Ver', appointment %></td>
         <%if (appointment.estado==true)%>
         	<td><%= link_to 'cancelar', cancelar_appointments_path(id: appointment.id) %></td>

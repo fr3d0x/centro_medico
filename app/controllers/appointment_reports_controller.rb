@@ -29,7 +29,7 @@ class AppointmentReportsController < ApplicationController
 
     respond_to do |format|
       if @appointment_report.save
-        format.html { redirect_to appointments_path, notice: 'Appointment report was successfully created.' }
+        format.html { redirect_to appointments_path, notice: 'Reporte creado con exito.' }
         format.json { render :show, status: :created, location: @appointment_report }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class AppointmentReportsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment_report.update(appointment_report_params)
-        format.html { redirect_to @appointment_report, notice: 'Appointment report was successfully updated.' }
+        format.html { redirect_to @appointment_report, notice: 'Reporte actualizado con exito.' }
         format.json { render :show, status: :ok, location: @appointment_report }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class AppointmentReportsController < ApplicationController
   def destroy
     @appointment_report.destroy
     respond_to do |format|
-      format.html { redirect_to appointment_reports_url, notice: 'Appointment report was successfully destroyed.' }
+      format.html { redirect_to appointment_reports_url, notice: 'Reporte borrado con exito.' }
       format.json { head :no_content }
     end
   end

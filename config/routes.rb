@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :pediatric_appointments
+
   resources :growth_controls
 
   resources :pediatric_controls

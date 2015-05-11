@@ -8,7 +8,7 @@ class CreateRecords < ActiveRecord::Migration
       t.string :rec_varchar
       t.float :rec_float
       t.boolean :rec_boolean
-      t.date :rec_fech
+      t.date :rec_fecha
       t.boolean :rec_activo
       t.references :table, index: true
 

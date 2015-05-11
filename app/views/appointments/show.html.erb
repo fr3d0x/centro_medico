@@ -1,28 +1,38 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>fecha:</strong>
+  <%= @appointment.fecha.strftime('%d/%m/%y') %>
+</p>
+
+<p>
+  <strong>Hora:</strong>
+  <%= @appointment.hora.strftime('%I:%M.%P') %>
+</p>
+
+<p>
   <strong>Apellido:</strong>
-  <%= @appointment.apellido %>
+  <%= @appointment.patient.apellido %>
 </p>
 
 <p>
   <strong>Nombre:</strong>
-  <%= @appointment.nombre %>
+  <%= @appointment.patient.nombre %>
 </p>
 
 <p>
   <strong>Cedula:</strong>
-  <%= @appointment.cedula %>
+  <%= @appointment.patient.cedula %>
 </p>
 
 <p>
   <strong>Telefono:</strong>
-  <%= @appointment.telefono %>
+  <%= @appointment.patient.telefono %>
 </p>
 
 <p>
-  <strong>Menor:</strong>
-  <%= @appointment.menor %>
+  <strong>Doctor:</strong>
+  <%= @appointment.doctor.nombre + ' ' +@appointment.doctor.apellido %>
 </p>
 
 <%= link_to 'Edit', edit_appointment_path(@appointment) %> |

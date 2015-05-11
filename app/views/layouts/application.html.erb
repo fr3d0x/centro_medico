@@ -36,6 +36,20 @@
 	            <%= link_to "Buscar Doctor", doctors_path %>
 	          </li>
 	        </ul>
+	        <ul class="no-list row center-xs middle-xs">
+	          <li class= "col-md">
+	            <%= link_to "Citas Pediatria", pediatric_appointments_path %>
+	          </li>
+	          <li class= "col-md">
+	            <%= link_to "Agregar Paciente pediatrico", new_pediatric_patient_path%>
+	          </li>
+	          <li class= "col-md">
+	            <%= link_to "Pacientes pediatricos", pediatric_patients_path %> 
+	          </li>
+	          <li class= "col-md">
+	            <%= link_to "Agregar Cita pediatrica", new_pediatric_appointment_path %>
+	          </li>
+	        </ul>
 	          </nav>
 	    	<div class="user-box"> 
 			<h2>Bienvenido,  <%= current_user.nombre + ' ' + current_user.apellido %></h2>
