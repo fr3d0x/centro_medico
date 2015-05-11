@@ -53,7 +53,10 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-    if Patient.existente(params[:cedula_paciente])
+    if params[:cedula_paciente].blank?
+      flash.keep[:notice] = "Por favor introduzca una cedula valida"
+      render :new
+    elsif Patient.existente(params[:cedula_paciente])
       @appointment.patient_id = Patient.existente(params[:cedula_paciente]).id
     respond_to do |format|
       if @appointment.save
@@ -64,7 +67,7 @@ class AppointmentsController < ApplicationController
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
-    else
+    elsif
       paciente = Patient.create(cedula: params[:cedula_paciente])
       @appointment.patient_id = paciente.id
       if @appointment.save
