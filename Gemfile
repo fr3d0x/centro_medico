@@ -7,7 +7,8 @@ gem 'will_paginate'
 # Use postgresql as the database for Active Record
 gem 'pg'
 #gema para pdf
-gem 'prawnto_2', :require => "prawnto"
+gem 'prawn'
+gem 'prawn-table'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record

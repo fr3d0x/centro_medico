@@ -10,6 +10,15 @@ class AppointmentReportsController < ApplicationController
   # GET /appointment_reports/1
   # GET /appointment_reports/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = AppointmentReportPdf.new(@appointment_report)
+        send_data pdf.render, filename: "Reporte_medico_de_cita_#{@appointment_report.appointment.id.to_s.rjust(4, '0')}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   # GET /appointment_reports/new

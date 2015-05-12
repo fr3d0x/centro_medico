@@ -1,78 +1,58 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>B.c.g1:</strong>
-  <%= @pediatric_control.bcg1 %>
+  <strong>B.c.g1: </strong>&nbsp
+  <%= @pediatric_control.bcg1 %>&nbsp&nbsp 
+
+  <strong>B.c.g2: </strong>&nbsp 
+  <%= @pediatric_control.bcg2 %>&nbsp&nbsp 
+
+  <strong>B.c.g3: </strong>&nbsp 
+  <%= @pediatric_control.bcg3 %>&nbsp&nbsp  
 </p>
 
 <p>
-  <strong>B.c.g2:</strong>
-  <%= @pediatric_control.bcg2 %>
+  <strong>Triple1:</strong>&nbsp
+  <%= @pediatric_control.triple1 %>&nbsp&nbsp
+
+  <strong>Triple2:</strong>&nbsp
+  <%= @pediatric_control.triple2 %>&nbsp&nbsp
+
+  <strong>Triple3:</strong>&nbsp
+  <%= @pediatric_control.triple3 %>&nbsp&nbsp
 </p>
 
 <p>
-  <strong>B.c.g3:</strong>
-  <%= @pediatric_control.bcg3 %>
+  <strong>Ref triple1:</strong>&nbsp
+  <%= @pediatric_control.ref_triple1 %>&nbsp&nbsp
+
+  <strong>Ref triple2:</strong>&nbsp
+  <%= @pediatric_control.ref_triple2 %>&nbsp&nbsp
+
+  <strong>Ref triple3:</strong>&nbsp
+  <%= @pediatric_control.ref_triple3 %>&nbsp&nbsp
 </p>
 
 <p>
-  <strong>Triple1:</strong>
-  <%= @pediatric_control.triple1 %>
+  <strong>Polio1:</strong>&nbsp
+  <%= @pediatric_control.polio1 %>&nbsp&nbsp
+
+  <strong>Polio2:</strong>&nbsp
+  <%= @pediatric_control.polio2 %>&nbsp&nbsp
+
+  <strong>Polio3:</strong>&nbsp
+  <%= @pediatric_control.polio3 %>&nbsp&nbsp
 </p>
 
 <p>
-  <strong>Triple2:</strong>
-  <%= @pediatric_control.triple2 %>
-</p>
+  <strong>Ref polio1:</strong>&nbsp
+  <%= @pediatric_control.ref_polio1 %>&nbsp&nbsp
 
-<p>
-  <strong>Triple3:</strong>
-  <%= @pediatric_control.triple3 %>
-</p>
+  <strong>Ref polio2:</strong>&nbsp
+  <%= @pediatric_control.ref_polio2 %>&nbsp&nbsp
 
-<p>
-  <strong>Ref triple1:</strong>
-  <%= @pediatric_control.ref_triple1 %>
-</p>
-
-<p>
-  <strong>Ref triple2:</strong>
-  <%= @pediatric_control.ref_triple2 %>
-</p>
-
-<p>
-  <strong>Ref triple3:</strong>
-  <%= @pediatric_control.ref_triple3 %>
-</p>
-
-<p>
-  <strong>Polio1:</strong>
-  <%= @pediatric_control.polio1 %>
-</p>
-
-<p>
-  <strong>Polio2:</strong>
-  <%= @pediatric_control.polio2 %>
-</p>
-
-<p>
-  <strong>Polio3:</strong>
-  <%= @pediatric_control.polio3 %>
-</p>
-
-<p>
-  <strong>Ref polio1:</strong>
-  <%= @pediatric_control.ref_polio1 %>
-</p>
-
-<p>
-  <strong>Ref polio2:</strong>
-  <%= @pediatric_control.ref_polio2 %>
-</p>
-
-<p>
-  <strong>Ref polio3:</strong>
-  <%= @pediatric_control.ref_polio3 %>
+  <strong>Ref polio3:</strong>&nbsp
+  <%= @pediatric_control.ref_polio3 %>&nbsp&nbsp
 </p>
 
 <p>
@@ -109,6 +89,34 @@
   <strong>Observaciones:</strong>
   <%= @pediatric_control.observaciones %>
 </p>
+
+<p>
+  <strong>Control de crecimiento:</strong>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Edad</th>
+      <th>Peso</th>
+      <th>Talla</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pediatric_control.growth_controls.each do |growth_control| %>
+      <tr>
+        <td><%= growth_control.fecha %></td>
+        <td><%= growth_control.edad %></td>
+        <td><%= growth_control.peso %></td>
+        <td><%= growth_control.talla %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table><br>
+
+<%= link_to "Imprimir historial (pdf)", pediatric_control_path(@pediatric_control, :format => 'pdf'), target: "_blank" %><br>
 
 <%= link_to 'Edit', edit_pediatric_control_path(@pediatric_control) %> |
 <%= link_to 'Back', pediatric_controls_path %>

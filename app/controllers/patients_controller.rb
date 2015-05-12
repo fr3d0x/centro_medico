@@ -10,6 +10,15 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = PatientPdf.new(@patient)
+        send_data pdf.render, filename: "Historial_nro_#{@patient.num_hist_medica.to_s.rjust(4, '0')}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   # GET /patients/new

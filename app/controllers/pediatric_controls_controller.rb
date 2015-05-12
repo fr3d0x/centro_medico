@@ -10,6 +10,15 @@ class PediatricControlsController < ApplicationController
   # GET /pediatric_controls/1
   # GET /pediatric_controls/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = PediatricControlPdf.new(@pediatric_control)
+        send_data pdf.render, filename: "Controlpediatrico_#{@pediatric_control.id}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   # GET /pediatric_controls/new
