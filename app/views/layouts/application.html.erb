@@ -13,56 +13,32 @@
 	<header>
 		<nav class="be-emerald white large-padding">
 		<% if user_signed_in? %>
-	  		En linea como <strong><%= current_user.nombre + ' ' + current_user.apellido %></strong>.
-	  		<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-	  		<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-	        <ul class="no-list row center-xs middle-xs">
-	          <li class= "col-md">
-	            <%= link_to "Citas del dia", citas_del_dia_appointments_path %>
-	          </li>
-	          <li class= "col-md">
-	            <%= link_to "Home", root_path %>
-	          </li>
-	          <li class= "col-md">
-	            <%= link_to "Agregar Paciente", new_patient_path%>
-	          </li>
-	          <li class= "col-md">
-	            <%= link_to "Buscar Pacientes", patients_path %> 
-	          </li>
-	          <li class= "col-md">
-	            <%= link_to "Agregar Cita", new_appointment_path %>
-	          </li>
-	          <li class= "col-md">
-	            <%= link_to "Buscar Doctor", doctors_path %>
-	          </li>
-	        </ul>
-	        <ul class="no-list row center-xs middle-xs">
-	          <li class= "col-md">
-	            <%= link_to "Citas Pediatria", pediatric_appointments_path %>
-	          </li>
-	          <li class= "col-md">
-	            <%= link_to "Agregar Paciente pediatrico", new_pediatric_patient_path%>
-	          </li>
-	          <li class= "col-md">
-	            <%= link_to "Pacientes pediatricos", pediatric_patients_path %> 
-	          </li>
-	          <li class= "col-md">
-	            <%= link_to "Agregar Cita pediatrica", new_pediatric_appointment_path %>
-	          </li>
-	        </ul>
-	          </nav>
-	    	<div class="user-box"> 
-			<h2>Bienvenido,  <%= current_user.nombre + ' ' + current_user.apellido %></h2>
-			<p class="alert"><%= alert %></p>
-			</div>
+  		En linea como <strong><%= current_user.nombre + ' ' + current_user.apellido %></strong>.
+  		<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  		<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+      <ul class="no-list row center-xs middle-xs">
+      	<li class= "col-md">
+          <%= link_to "Home", root_path %>
+        </li>
+        <li class= "col-md">
+          <%= link_to "Citas del dia", citas_del_dia_appointments_path %>
+        </li>
+        <li class= "col-md">
+					<%= link_to "Citas Pediatria", pediatric_appointments_path %>
+				</li>
+				<li class= "col-md">
+    			<%= link_to "Buscar Doctor", doctors_path %>
+  			</li>
+      </ul>
+	  </nav>
 		<% else %>
-		<li class= "col-md">
-		  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> 
-		</li>
-		<li class= "col-md">
-		  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-		</li>
-		  </nav>
+			<li class= "col-md">
+			  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> 
+			</li>
+			<li class= "col-md">
+			  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+			</li>
+		</nav>
 		<% end %>        
 	</header>
 	<div class="box-ap">
