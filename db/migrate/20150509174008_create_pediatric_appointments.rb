@@ -10,10 +10,12 @@ class CreatePediatricAppointments < ActiveRecord::Migration
       t.string :relacion
       t.references :pediatric_patient, index: true
       t.references :patient, index: true
+      t.references :doctor, index: true
 
       t.timestamps null: false
     end
     add_foreign_key :pediatric_appointments, :pediatric_patients
     add_foreign_key :pediatric_appointments, :patients
+    add_foreign_key :pediatric_appointments, :doctors
   end
 end

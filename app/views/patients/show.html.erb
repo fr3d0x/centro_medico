@@ -52,7 +52,7 @@
 
 <div>
 <% if @patient.medical_history %>
-  <strong>Historial:</strong><br>
+  <h2><strong>Historial:</strong><br></h3>
     <p>
     <strong>Tipo de sangre: </strong>
     <%= @patient.medical_history.tipo_sangre %><br>
@@ -113,30 +113,13 @@
         <%= :no %>
     <%end%>
     </p>
-  </div>
-
-  <div>
-  <strong>Medicos del paciente:</strong><br>
-    <ol>
-    <% @patient.doctors.uniq.each do |doctor| %>
-      <li><%= doctor.nombre %> <%= doctor.apellido %>, especialidad: <%= doctor.especialidad %></li>
-    <%end%>
-    </ol>
-  </div>
-  <div>
-  <strong>Consultas:</strong><br>
-  <ol>
-    <% @patient.appointments.order(:fecha).order(:hora).each do |appointment| %>
-      <li><%= appointment.motivo %></li>
-      <ul>
-      <li><%= appointment.fecha.strftime('%d/%m/%y') %></li>
-      <li><%= appointment.hora.strftime('%I:%M.%P')  %></li>
-      <li><%= appointment.doctor.nombre %></li>
-      <li><%= appointment.doctor.especialidad %></li>
-      </ul>
-    <%end%>
-  </ol>
-  </div><br><br>
+<%end%>
+</div>
+<% if @patient.doctors %>
+  <div><%= render 'doctors' %></div>
+<%end%>
+<% if @patient.appointments %>
+  <div><%= render 'appointments' %></div>
 <%end%>
 
 <%= link_to "Imprimir historial (pdf)", patient_path(@patient, :format => 'pdf'), target: "_blank" %><br>

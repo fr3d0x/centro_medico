@@ -1,7 +1,8 @@
 class PediatricPatient < ActiveRecord::Base
 	has_one :pediatric_history, :dependent => :destroy
-	has_one :pediatric_appointment, :dependent => :destroy
+	has_many :pediatric_appointments, :dependent => :destroy
 	accepts_nested_attributes_for :pediatric_history
+	has_many :doctors, :through => :pediatric_appointments
 
 	private
 
@@ -18,5 +19,14 @@ class PediatricPatient < ActiveRecord::Base
 		hist_med = PediatricHistory.find_by!("ced_madre = ? OR ced_padre = ?", "%#{search}%", "%#{search}%")
 		paciente = hist_med.pediatric_patient
 		return paciente
+	end
+	def self.existente(string)
+		historia = PediatricHistory.find_by("ced_madre = ? OR ced_padre = ?", string, string)
+		if historia.blank?
+			return nil
+		else
+			paciente = find_by(id: historia.pediatric_patient_id)
+			return paciente
+		end
 	end
 end

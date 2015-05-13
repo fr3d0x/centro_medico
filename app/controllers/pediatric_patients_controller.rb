@@ -20,6 +20,9 @@ class PediatricPatientsController < ApplicationController
 
   # GET /pediatric_patients/1/edit
   def edit
+    if @pediatric_patient.pediatric_history == nil
+      @pediatric_patient.build_pediatric_history
+    end
   end
 
   # POST /pediatric_patients

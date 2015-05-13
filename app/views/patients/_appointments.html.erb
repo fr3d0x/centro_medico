@@ -1,0 +1,12 @@
+<h2><strong>Consultas:</strong><br></h2>
+  <ol>
+    <% @patient.appointments.order(:fecha).order(:hora).each do |appointment| %>
+      <li><%= appointment.motivo %></li>
+      <ul>
+      <li><%= appointment.fecha.strftime('%d/%m/%y') %></li>
+      <li><%= appointment.hora.strftime('%I:%M.%P')  %></li>
+      <li><%= appointment.doctor.nombre %></li>
+      <li><%= appointment.doctor.especialidad %></li>
+      </ul>
+    <%end%>
+  </ol>

@@ -11,9 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
 //= require jquery.turbolinks
+//= require jquery_ujs
 //= require_tree .
 
 $(document).on('click', 'form .remove_fields', function(event) {
@@ -28,4 +27,15 @@ $(document).on('click', 'form .add_fields', function(event) {
   regexp = new RegExp($(this).data('id'), 'g');
   $(this).before($(this).data('fields').replace(regexp, time));
   return event.preventDefault();
+});
+
+$(function() {
+  $('#patients').on('click', '.pagination a', function() {
+    $.get(this.href, null, null, 'script');
+    return false;
+  });
+  $('#dynamic_search input').keyup(function() {
+    $.get(this.action, $("#dynamic_search").serialize(), null, 'script');
+    return false;
+  });
 });

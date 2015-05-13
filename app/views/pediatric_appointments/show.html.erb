@@ -17,12 +17,7 @@
 
 <p>
   <strong>Patients:</strong>
-  <%= @pediatric_appointment.patients %>
-</p>
-
-<p>
-  <strong>Pediatric patients:</strong>
-  <%= @pediatric_appointment.pediatric_patients %>
+  <%= @pediatric_appointment.pediatric_patient.nombre + ' ' + @pediatric_appointment.pediatric_patient.apellido %>
 </p>
 
 <%= link_to 'Edit', edit_pediatric_appointment_path(@pediatric_appointment) %> |

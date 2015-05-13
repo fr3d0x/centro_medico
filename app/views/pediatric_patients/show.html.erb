@@ -29,6 +29,82 @@
   <strong>Telefono madre:</strong>
   <%= @pediatric_patient.telefono_madre %>
 </p>
+<% if @pediatric_patient.pediatric_history %>
+  <div>  
+    <h2><strong>Historial:</strong><br></h2>
+    <p>
+      <strong>Edad:</strong>
+      <%= @pediatric_patient.pediatric_history.edad %>
+    </p>
+
+    <p>
+      <strong>Genero:</strong>
+      <%= @pediatric_patient.pediatric_history.genero %>
+    </p>
+
+    <p>
+      <strong>Peso:</strong>
+      <%= @pediatric_patient.pediatric_history.peso %>
+    </p>
+
+    <p>
+      <strong>Talla:</strong>
+      <%= @pediatric_patient.pediatric_history.talla %>
+    </p>
+
+    <p>
+      <strong>Lugar nacimiento:</strong>
+      <%= @pediatric_patient.pediatric_history.lugar_nacimiento %>
+    </p>
+
+    <p>
+      <strong>Lugar residencia:</strong>
+      <%= @pediatric_patient.pediatric_history.lugar_residencia %>
+    </p>
+
+    <p>
+      <strong>Padre:</strong>
+      <%= @pediatric_patient.pediatric_history.padre %>
+    </p>
+
+    <p>
+      <strong>Madre:</strong>
+      <%= @pediatric_patient.pediatric_history.madre %>
+    </p>
+
+    <p>
+      <strong>Diagnostico familiar:</strong>
+      <%= @pediatric_patient.pediatric_history.diagnostico_familiar %>
+    </p>
+
+    <p>
+      <strong>Antecedentes pre-natales:</strong>
+      <%= @pediatric_patient.pediatric_history.antecedentes_prenatales %>
+    </p>
+
+    <p>
+      <strong>Antecedentes natales:</strong>
+      <%= @pediatric_patient.pediatric_history.antecedentes_natales %>
+    </p>
+
+    <p>
+      <strong>Antecedentes post-natales:</strong>
+      <%= @pediatric_patient.pediatric_history.antecedentes_postnatales %>
+    </p>
+
+    <p>
+      <strong>Sintomas generales:</strong>
+      <%= @pediatric_patient.pediatric_history.sintomas_generales %>
+    </p>   
+  </div>
+<%end%>
+<% if @pediatric_patient.doctors %>
+  <div><%= render 'doctors' %></div>
+<%end%>
+<% if @pediatric_patient.pediatric_appointments %>
+  <div><%= render 'pediatric_appointments' %></div><br><br>
+<%end%>
+
 
 <%= link_to 'Edit', edit_pediatric_patient_path(@pediatric_patient) %> |
 <%= link_to 'Back', pediatric_patients_path %>

@@ -36,6 +36,15 @@
     <%= f.label :relacion %><br>
     <%= f.text_field :relacion %>
   </div>
+    <%= f.hidden_field :patient_id %>
+  <div class="field">
+    <%= f.label 'Cedula del padre o madre:' %><br>
+    <%= text_field_tag 'cedula_representante' %>
+  </div>
+  <div class="field">
+    <%= f.label :doctor %><br>
+    <%= f.collection_select(:doctor_id, Doctor.all, :id, :nombre, {:include_blank => true}, {:multiple => false})  %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

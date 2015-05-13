@@ -69,6 +69,6 @@ class PediatricHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pediatric_history_params
-      params.require(:pediatric_history).permit(:edad, :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :madre, :diagnostico_familiar, :antecedentes_prenatales, :antecedentes_natales, :antecedentes_postnatales, :sintomas_generales)
+      params.require(:pediatric_history).permit(:edad, :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :ced_padre, :ced_madre, :madre, :diagnostico_familiar, :antecedentes_prenatales, :antecedentes_natales, :antecedentes_postnatales, :sintomas_generales)
     end
 end

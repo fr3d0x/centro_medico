@@ -1,0 +1,14 @@
+I"X(function() {
+  $(function() {
+    $('#patients').on('click', '.pagination a', function() {
+      $.get(this.href, null, null, 'script');
+      return false;
+    });
+    $('#patients_search input').keyup(function() {
+      $.get(this.action, $("#patients_search").serialize(), null, 'script');
+      return false;
+    });
+  });
+
+}).call(this);
+:ET

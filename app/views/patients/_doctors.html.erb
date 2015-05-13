@@ -1,0 +1,6 @@
+<h2><strong>Medicos del paciente:</strong><br></h2>
+<ol>
+<% @patient.doctors.uniq.each do |doctor| %>
+  <li><%= doctor.nombre %> <%= doctor.apellido %>, especialidad: <%= doctor.especialidad %></li>
+<%end%>
+</ol>

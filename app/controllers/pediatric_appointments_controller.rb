@@ -25,11 +25,25 @@ class PediatricAppointmentsController < ApplicationController
   # POST /pediatric_appointments.json
   def create
     @pediatric_appointment = PediatricAppointment.new(pediatric_appointment_params)
-
+    if params[:cedula_representante].blank?
+      flash.keep[:notice] = "Por favor introduzca una cedula valida"
+      render :new
+    elsif PediatricPatient.existente(params[:cedula_representante])
+      @pediatric_appointment.pediatric_patient_id = PediatricPatient.existente(params[:cedula_representante]).id
     respond_to do |format|
       if @pediatric_appointment.save
-        format.html { redirect_to @pediatric_appointment, notice: 'Pediatric appointment was successfully created.' }
+        format.html { redirect_to @pediatric_appointment, notice: 'Cita creada con exito.' }
         format.json { render :show, status: :created, location: @pediatric_appointment }
+      else
+        format.html { render :new }
+        format.json { render json: @pediatric_appointment.errors, status: :unprocessable_entity }
+      end
+    end
+    else
+      paciente = PediatricPatient.create()
+      @pediatric_appointment.pediatric_patient_id = paciente.id
+      if @pediatric_appointment.save
+        redirect_to edit_pediatric_patient_path(paciente), notice: 'Cita creada con exito.'   
       else
         format.html { render :new }
         format.json { render json: @pediatric_appointment.errors, status: :unprocessable_entity }
@@ -69,6 +83,6 @@ class PediatricAppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pediatric_appointment_params
-      params.require(:pediatric_appointment).permit(:responsable, :telefono, :relacion, :patients_id, :pediatric_patients_id)
+      params.require(:pediatric_appointment).permit(:fecha, :hora, :motivo, :responsable, :telefono, :relacion, :patient_id, :pediatric_patient_id, :doctor_id)
     end
 end
