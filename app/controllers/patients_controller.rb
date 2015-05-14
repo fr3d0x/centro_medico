@@ -32,6 +32,8 @@ class PatientsController < ApplicationController
   def edit
     if @patient.medical_history == nil
       @patient.build_medical_history
+    end
+    if @patient.num_hist_medica.blank?
       @patient.num_hist_medica = @patient.medical_history.id
     end
   end

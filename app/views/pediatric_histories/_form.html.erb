@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :genero %><br>
-    <%= f.text_field :genero %>
+    <%= f.collection_select(:genero, @registros.buscar_tabla(5) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
   </div>
   <div class="field">
     <%= f.label :peso %><br>

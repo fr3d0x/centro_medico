@@ -5,7 +5,13 @@ class Doctor < ActiveRecord::Base
 	before_save :fields_to_downcase
 
 	validates :especialidad, presence: true, on: :update
-	
+	validates :especialidad, :cedula, :nombre, :apellido, :direccion, :telefono1, presence: {message: "Debe estar presente para crear la cita"}
+	validates :direccion, :length => {
+    :minimum   => 25,
+    :maximum   => 1500,
+    :too_short => "debe tener al menos %{count} caracteres",
+    :too_long  => "debe tener %{count} caracteres maximo"
+  }
 
 	protected
 

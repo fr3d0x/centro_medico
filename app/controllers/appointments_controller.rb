@@ -73,8 +73,10 @@ class AppointmentsController < ApplicationController
       if @appointment.save
         redirect_to edit_patient_path(paciente), notice: 'Cita creada con exito.'   
       else
+        respond_to do |format|
         format.html { render :new }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
+      end
       end
     end
   end

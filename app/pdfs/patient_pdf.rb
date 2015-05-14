@@ -3,7 +3,7 @@ class PatientPdf< Prawn::Document
 		super(top_margin: 40)
 		@patient = patient
 		text "Datos Personales de #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
-		text "Numero de Historial: #{@patient.num_hist_medica}"
+		text "Numero de Historial: #{@patient.num_hist_medica.to_s.rjust(4, '0')}"
 		text "Cedula: #{@patient.cedula}"
 		text "Fecha de nacimiento: #{@patient.fecha_nacimiento}"
 		text "Fecha de ingreso a la clinica: #{@patient.fecha_ingreso}"

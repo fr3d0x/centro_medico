@@ -41,6 +41,7 @@ class PediatricAppointmentsController < ApplicationController
     end
     else
       paciente = PediatricPatient.create()
+      PediatricHistory.create(ced_padre: params[:cedula_representante], ced_madre: params[:cedula_representante], pediatric_patient_id: paciente.id)
       @pediatric_appointment.pediatric_patient_id = paciente.id
       if @pediatric_appointment.save
         redirect_to edit_pediatric_patient_path(paciente), notice: 'Cita creada con exito.'   

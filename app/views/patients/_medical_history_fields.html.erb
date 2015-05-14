@@ -1,6 +1,6 @@
 <fieldset>
   <%= f.label :tipo_sangre %><br>
-  <%= f.text_field :tipo_sangre %><br>
+  <%= f.collection_select(:tipo_sangre, @registros.buscar_tabla(3) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false}) %><br>
   <%= f.label :peso %><br>
   <%= f.text_field :peso %><br>
   <%= f.label :altura %><br>

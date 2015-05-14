@@ -1,103 +1,147 @@
 <%= form_for(@pediatric_control) do |f| %>
   <% if @pediatric_control.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@pediatric_control.errors.count, "error") %> prohibited this pediatric_control from being saved:</h2>
+      <h2><%= pluralize(@pediatric_control.errors.count, "error") %> No permiten generar el control pediatrico:</h2>
 
       <ul>
-      <% @pediatric_control.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @pediatric_control.errors.messages.values.each do |message| %>
+        <% message.each do  |m| %>
+          <li><%= m %></li>
+        <%end %>
       <% end %>
       </ul>
     </div>
   <% end %>
 
   <%= f.hidden_field :pediatric_history_id %>
+  <table id="no_border">
+    <tr>
+      <td>
+      <div class="field">
+        <%= f.label 'B C G 1: ' %><br>
+        <%= f.date_field :bcg1 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'B C G 2: ' %><br>
+        <%= f.date_field :bcg2 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'B C G 3: ' %><br>
+        <%= f.date_field :bcg3 %>
+      </div>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <div class="field">
+        <%= f.label 'Trile 1: ' %><br>
+        <%= f.date_field :triple1 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'Trile 2: ' %><br>
+        <%= f.date_field :triple2 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'Trile 3: ' %><br>
+        <%= f.date_field :triple3 %>
+      </div>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <div class="field">
+        <%= f.label 'Refuerzo Trile 1: ' %><br>
+        <%= f.date_field :ref_triple1 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'Refuerzo Trile 2: ' %><br>
+        <%= f.date_field :ref_triple2 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'Refuerzo Trile 3: ' %><br>
+        <%= f.date_field :ref_triple3 %>
+      </div>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <div class="field">
+        <%= f.label 'Polio 1: ' %><br>
+        <%= f.date_field :polio1 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'Polio 2: ' %><br>
+        <%= f.date_field :polio2 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'Polio 3: ' %><br>
+        <%= f.date_field :polio3 %>
+      </div>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <div class="field">
+        <%= f.label 'Refuerzo Polio 1: ' %><br>
+        <%= f.date_field :ref_polio1 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'Refuerzo Polio 2: ' %><br>
+        <%= f.date_field :ref_polio2 %>
+      </div>
+      </td>
+      <td>
+      <div class="field">
+        <%= f.label 'Refuerzo Polio 3: ' %><br>
+        <%= f.date_field :ref_polio3 %>
+      </div>
+      </td>
+    </tr>
+  </table>
   <div class="field">
-    <%= f.label :bcg1 %><br>
-    <%= f.date_field :bcg1 %>
-  </div>
-  <div class="field">
-    <%= f.label :bcg2 %><br>
-    <%= f.date_field :bcg2 %>
-  </div>
-  <div class="field">
-    <%= f.label :bcg3 %><br>
-    <%= f.date_field :bcg3 %>
-  </div>
-  <div class="field">
-    <%= f.label :triple1 %><br>
-    <%= f.date_field :triple1 %>
-  </div>
-  <div class="field">
-    <%= f.label :triple2 %><br>
-    <%= f.date_field :triple2 %>
-  </div>
-  <div class="field">
-    <%= f.label :triple3 %><br>
-    <%= f.date_field :triple3 %>
-  </div>
-  <div class="field">
-    <%= f.label :ref_triple1 %><br>
-    <%= f.date_field :ref_triple1 %>
-  </div>
-  <div class="field">
-    <%= f.label :ref_triple2 %><br>
-    <%= f.date_field :ref_triple2 %>
-  </div>
-  <div class="field">
-    <%= f.label :ref_triple3 %><br>
-    <%= f.date_field :ref_triple3 %>
-  </div>
-  <div class="field">
-    <%= f.label :polio1 %><br>
-    <%= f.date_field :polio1 %>
-  </div>
-  <div class="field">
-    <%= f.label :polio2 %><br>
-    <%= f.date_field :polio2 %>
-  </div>
-  <div class="field">
-    <%= f.label :polio3 %><br>
-    <%= f.date_field :polio3 %>
-  </div>
-  <div class="field">
-    <%= f.label :ref_polio1 %><br>
-    <%= f.date_field :ref_polio1 %>
-  </div>
-  <div class="field">
-    <%= f.label :ref_polio2 %><br>
-    <%= f.date_field :ref_polio2 %>
-  </div>
-  <div class="field">
-    <%= f.label :ref_polio3 %><br>
-    <%= f.date_field :ref_polio3 %>
-  </div>
-  <div class="field">
-    <%= f.label :sarampion %><br>
+    <%= f.label 'Sarampion: ' %><br>
     <%= f.date_field :sarampion %>
   </div>
   <div class="field">
-    <%= f.label :parotiditis %><br>
+    <%= f.label 'Parotiditis: ' %><br>
     <%= f.date_field :parotiditis %>
   </div>
   <div class="field">
-    <%= f.label :rubeola %><br>
+    <%= f.label 'Rubeola: ' %><br>
     <%= f.date_field :rubeola %>
   </div>
   <div class="field">
-    <%= f.label :f_amarilla %><br>
+    <%= f.label 'Fiebre Amarilla: ' %><br>
     <%= f.date_field :f_amarilla %>
   </div>
   <div class="field">
-    <%= f.label :trivalente %><br>
+    <%= f.label 'Trivalente: ' %><br>
     <%= f.date_field :trivalente %>
   </div>
   <div class="field">
-    <%= f.label :otras %><br>
+    <%= f.label 'Otras: ' %><br>
     <%= f.text_area :otras %>
   </div>
   <div class="field">
-    <%= f.label :observaciones %><br>
+    <%= f.label 'Observaciones: ' %><br>
     <%= f.text_area :observaciones %>
   </div>
   <div class = "field">

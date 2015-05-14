@@ -1,7 +1,7 @@
 <%= form_for(@appointment_report) do |f| %>
   <% if @appointment_report.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@appointment_report.errors.count, "error") %> prohibited this appointment_report from being saved:</h2>
+      <h2><%= pluralize(@appointment_report.errors.count, "error") %> No permiten generar el reporte:</h2>
 
       <ul>
       <% @appointment_report.errors.full_messages.each do |message| %>

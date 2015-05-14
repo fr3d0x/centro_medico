@@ -38,7 +38,7 @@
   </div>
   <div class="field">
     <%= f.label :estado_civil %><br>
-    <%= f.text_field :estado_civil %>
+    <%= f.collection_select(:estado_civil, @registros.buscar_tabla(4) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
   </div>
   <div class="field">
     <%= f.label :telefono %><br>
