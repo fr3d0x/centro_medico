@@ -5,7 +5,7 @@
   <thead>
     <tr>
       <th>Cedula</th>
-      <th>Num hist medica</th>
+      <th>Historia medica</th>
       <th>Apellido</th>
       <th>Nombre</th>
       <th>Fecha nacimiento</th>
@@ -14,31 +14,29 @@
       <th>Estado civil</th>
       <th>Telefono</th>
       <th>Direccion</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @patients.each do |patient| %>
       <tr>
-        <td><%= patient.cedula %></td>
-        <td><%= patient.num_hist_medica.to_s.rjust(4, '0') %></td>
-        <td><%= patient.apellido %></td>
-        <td><%= patient.nombre %></td>
-        <td><%= patient.fecha_nacimiento %></td>
-        <td><%= patient.edad %></td>
-        <td><%= patient.fecha_ingreso %></td>
-        <td><%= patient.estado_civil %></td>
-        <td><%= patient.telefono %></td>
-        <td><%= patient.direccion %></td>
-        <td><%= link_to 'Mostrar', patient %></td>
-        <td><%= link_to 'Editar', edit_patient_path(patient) %></td>
-        <td><%= link_to 'Borrar', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="text-align: center;"><%= patient.cedula %></td>
+        <td style="text-align: center;"><%= patient.num_hist_medica.to_s.rjust(4, '0') %></td>
+        <td style="text-align: center;"><%= patient.apellido %></td>
+        <td style="text-align: center;"><%= patient.nombre %></td>
+        <td style="text-align: center; width: 10em;"><%= patient.fecha_nacimiento %></td>
+        <td style="text-align: center;"><%= patient.edad %></td>
+        <td style="text-align: center; width: 10em;"><%= patient.fecha_ingreso %></td>
+        <td style="text-align: center;"><%= patient.estado_civil %></td>
+        <td style="text-align: center;"><%= patient.telefono %></td>
+        <td style="text-align: center;"><%= patient.direccion %></td>
+        <td style="text-align: center;"><%= link_to 'Mostrar', patient %></td>
+        <td style="text-align: center;"><%= link_to 'Actualizar datos', edit_patient_path(patient) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= will_paginate @patients %>
-
 <br>
+<div style="text-align: center;"><%= will_paginate @patients %></div>
+

@@ -2,10 +2,11 @@
   <% if @patient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-
       <ul>
-      <% @patient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @patient.errors.messages.values.each do |message| %>
+        <% message.each do  |m| %>
+          <li><%= m %></li>
+        <%end %>
       <% end %>
       </ul>
     </div>

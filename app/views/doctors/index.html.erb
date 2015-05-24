@@ -33,7 +33,11 @@
         <td><%= doctor.telefono2 %></td>
         <td><%= link_to 'Mostrar', doctor %></td>
         <td><%= link_to 'Editar datos personales', edit_doctor_path(doctor) %></td>
-        <td><%= link_to 'Citas', citas_por_doctor_appointments_path(doctor_id: doctor.id) %></td>
+        <%if doctor.especialidad == 'Pediatria' %>
+          <td><%= link_to 'Citas', citas_por_doctor_pediatric_appointments_path(doctor_id: doctor.id) %></td>
+        <%else%>
+          <td><%= link_to 'Citas', citas_por_doctor_appointments_path(doctor_id: doctor.id) %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

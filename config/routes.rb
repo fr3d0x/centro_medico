@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :pediatric_appointments
+  resources :pediatric_appointments do
+    collection do
+      get :cancelar
+      get :reactivar
+      get :doc_index
+      post :doc_index
+      get :citas_del_dia
+      post :citas_del_dia
+      get :citas_por_doctor
+      post :citas_por_doctor
+    end
+  end
 
   resources :growth_controls
 

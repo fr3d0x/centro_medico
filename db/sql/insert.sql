@@ -210,3 +210,22 @@ INSERT INTO records(
             updated_at)
     VALUES (31, 'Infome', 'informe medico', null, 'informe medico', 'Informe medico', 
              null, false, null, true, 6, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
+
+/* --------------------------------------*/
+/* ----------    SET SEQUENCE   -------- */
+/* --------------------------------------*/
+
+    SELECT setval('appointment_reports_id_seq', (SELECT max(id) + 1 FROM appointment_reports));
+    SELECT setval('appointments_id_seq', (SELECT max(id) + 1 FROM appointments));
+    SELECT setval('doctors_id_seq', (SELECT max(id) + 1 FROM doctors));
+    SELECT setval('growth_controls_id_seq', (SELECT max(id) + 1 FROM growth_controls));
+    SELECT setval('medical_histories_id_seq', (SELECT max(id) + 1 FROM medical_histories));
+    SELECT setval('patients_id_seq', (SELECT max(id) + 1 FROM patients));
+    SELECT setval('pediatric_appointments_id_seq', (SELECT max(id) + 1 FROM pediatric_appointments));
+    SELECT setval('pediatric_controls_id_seq', (SELECT max(id) + 1 FROM pediatric_controls));
+    SELECT setval('pediatric_histories_id_seq', (SELECT max(id) + 1 FROM pediatric_histories));
+    SELECT setval('pediatric_patients_id_seq', (SELECT max(id) + 1 FROM pediatric_patients));
+    SELECT setval('records_id_seq', (SELECT max(id) + 1 FROM records));
+    SELECT setval('tables_id_seq', (SELECT max(id) + 1 FROM tables));
+
+

@@ -4,12 +4,21 @@ class PediatricPatientsController < ApplicationController
   # GET /pediatric_patients
   # GET /pediatric_patients.json
   def index
-    @pediatric_patients = PediatricPatient.all
+    @pediatric_patients = PediatricPatient.search(params[:search]).paginate(:per_page => 6, :page => params[:page])
   end
 
   # GET /pediatric_patients/1
   # GET /pediatric_patients/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = PediatricPatientPdf.new(@pediatric_patient)
+        send_data pdf.render, filename: "Historia_Pediatrica_de:_#{@pediatric_patient.nombre + ' ' + @pediatric_patient.apellido}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   # GET /pediatric_patients/new
@@ -77,6 +86,6 @@ class PediatricPatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pediatric_patient_params
-      params.require(:pediatric_patient).permit(:nombre, :apellido, :fecha_nacimiento, :fecha_ingreso, :telefono_padre, :telefono_madre, :pediatric_history_attributes => [:id, :edad, :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :madre, :diagnostico_familiar, :antecedentes_prenatales, :antecedentes_natales, :antecedentes_postnatales, :sintomas_generales])
+      params.require(:pediatric_patient).permit(:id, :nombre, :apellido, :fecha_nacimiento, :fecha_ingreso, :telefono_padre, :telefono_madre, :pediatric_history_attributes => [:id, :edad, :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :ced_padre, :madre, :ced_madre, :diagnostico_familiar, :antecedentes_prenatales, :antecedentes_natales, :antecedentes_postnatales, :sintomas_generales])
     end
 end

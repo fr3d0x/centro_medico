@@ -26,13 +26,13 @@
         <%if (appointment.estado==true)%>
           <td><%= 'activa' %></td>
         <%else%>
-          <td><%= 'calcelada' %></td>
+          <td><%= 'cancelada' %></td>
         <%end%>
         <td><%= link_to 'Ver', appointment %></td>
         <%if (appointment.estado==true)%>
-        	<td><%= link_to 'cancelar', cancelar_appointments_path(id: appointment.id) %></td>
+        	<td><%= link_to 'Cancelar', cancelar_appointments_path(id: appointment.id) %></td>
         <%else%>
-        	<td><%= link_to 'reactivar', reactivar_appointments_path(id: appointment.id) %></td>
+        	<td><%= link_to 'Reactivar', reactivar_appointments_path(id: appointment.id) %></td>
         <%end%>
         <%if appointment.appointment_report %>
         	<td><%= link_to 'Mostrar reporte', appointment.appointment_report %></td>

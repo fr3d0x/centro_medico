@@ -2,7 +2,7 @@
     <%= f.label :edad %><br>
     <%= f.text_field :edad %><br>
     <%= f.label :genero %><br>
-    <%= f.text_field :genero %><br>
+    <%= f.collection_select(:genero, @registros.buscar_tabla(5) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %><br>
     <%= f.label :peso %><br>
     <%= f.text_field :peso %><br>
     <%= f.label :talla %><br>

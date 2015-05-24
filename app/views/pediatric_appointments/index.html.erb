@@ -1,8 +1,13 @@
 <%= render "layouts/pediatria" %>
 
+<%= form_tag @citas_del_dia_pediatric_appointments_path, :method => 'get', :id => "pediatric_appointments_search" do%>
+    <%= date_field_tag :search, params[:search] %>
+    <%= submit_tag "buscar", :name => nil %>
+<%end%>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Pediatric Appointments</h1>
+<h1>Listado de citas pediatricas</h1>
 
 <table>
   <thead>
@@ -32,4 +37,3 @@
 
 <br>
 
-<%= link_to 'New Pediatric appointment', new_pediatric_appointment_path %>

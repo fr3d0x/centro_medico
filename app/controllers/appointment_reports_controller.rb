@@ -1,4 +1,4 @@
-class AppointmentReportsController < ApplicationController
+ class AppointmentReportsController < ApplicationController
   before_action :set_appointment_report, only: [:show, :edit, :update, :destroy]
 
   # GET /appointment_reports

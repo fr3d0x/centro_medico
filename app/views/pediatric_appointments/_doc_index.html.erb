@@ -1,0 +1,52 @@
+<h1>Citas medicas de <%= current_user.nombre %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Apellido</th>
+      <th>Nombre</th>
+      <th>Responsable</th>
+      <th>Telefono del responsable</th>
+      <th>Medico</th>
+      <th>Telefono del doctor</th>
+      <th>estado</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pediatric_appointments.each do |pediatric_appointment| %>
+      <tr>
+        <td><%= pediatric_appointment.fecha.strftime('%d/%m/%y') %></td>
+        <td><%= pediatric_appointment.hora.strftime('%I:%M.%P') %></td>
+        <td><%= pediatric_appointment.pediatric_patient.apellido %></td>
+        <td><%= pediatric_appointment.pediatric_patient.nombre %></td>
+        <td><%= pediatric_appointment.responsable %></td>
+        <td><%= pediatric_appointment.telefono %></td>
+        <%if (pediatric_appointment.estado==true)%>
+          <td><%= 'activa' %></td>
+        <%else%>
+          <td><%= 'cancelada' %></td>
+        <%end%>
+        <td><%= link_to 'Ver', pediatric_appointment %></td>
+        <%if (pediatric_appointment.estado==true)%>
+        	<td><%= link_to 'Cancelar', cancelar_pediatric_appointments_path(id: pediatric_appointment.id) %></td>
+        <%else%>
+        	<td><%= link_to 'Reactivar', reactivar_pediatric_appointments_path(id: pediatric_appointment.id) %></td>
+        <%end%>
+        <%if pediatric_appointment.appointment_report %>
+        	<td><%= link_to 'Mostrar reporte', pediatric_appointment.appointment_report %></td>
+        <%else%>
+        	<td><%= link_to 'Generar reporte', new_appointment_report_path(pediatric_appointment_id: pediatric_appointment.id) %></td>
+        <%end%>
+        <td><%= link_to 'Editar', edit_pediatric_appointment_path(pediatric_appointment) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @pediatric_appointments %>
+
+<br>

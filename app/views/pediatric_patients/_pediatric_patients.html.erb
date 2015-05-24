@@ -1,8 +1,7 @@
-<%= render "layouts/pediatria" %>
 
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Pediatric Patients</h1>
+<h1>Listado de pacientes pediatricos</h1>
 
 <table>
   <thead>
@@ -28,11 +27,13 @@
         <td><%= pediatric_patient.telefono_madre %></td>
         <td><%= link_to 'Show', pediatric_patient %></td>
         <td><%= link_to 'Edit', edit_pediatric_patient_path(pediatric_patient) %></td>
-        <%if pediatric_patient.pediatric_history.pediatric_control %>
-          <td><%= link_to 'Actualizar Control', edit_pediatric_control_path(pediatric_patient.pediatric_history.pediatric_control) %></td>
-        <%else%>
-          <td><%= link_to 'Generar Control', new_pediatric_control_path(pediatric_history_id: pediatric_patient.pediatric_history.id) %></td>
-        <%end%>
+        <% if pediatric_patient.pediatric_history %>
+          <%if pediatric_patient.pediatric_history.pediatric_control %>
+            <td><%= link_to 'Actualizar Control', edit_pediatric_control_path(pediatric_patient.pediatric_history.pediatric_control) %></td>
+          <%else%>
+            <td><%= link_to 'Generar Control', new_pediatric_control_path(pediatric_history_id: pediatric_patient.pediatric_history.id) %></td>
+          <%end%>
+        <% end %>
         <td><%= link_to 'Ya es mayor', ya_es_mayor_pediatric_patients_path(id: pediatric_patient.id)%></td>
       </tr>
     <% end %>
@@ -40,5 +41,4 @@
 </table>
 
 <br>
-
-<%= link_to 'New Pediatric patient', new_pediatric_patient_path %>
+<div style="text-align: center;"><%= will_paginate @pediatric_patients %></div>

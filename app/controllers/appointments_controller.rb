@@ -6,23 +6,23 @@ class AppointmentsController < ApplicationController
   def index
     if current_user.tipo == "medico"
       doctor = Doctor.find_by(user_id: current_user.id)
-      @appointments = Appointment.where(doctor_id: doctor.id).order(:hora).paginate(:per_page => 6, :page => params[:page])
+      @appointments = Appointment.search(params[:search]).where(doctor_id: doctor.id).order(:hora).paginate(:per_page => 6, :page => params[:page])
     else
-      @appointments = Appointment.all.order(:hora).paginate(:per_page => 4, :page => params[:page])
+      @appointments = Appointment.all.search(params[:search]).paginate(:per_page => 4, :page => params[:page])
     end
   end
 
   def citas_del_dia
     if current_user.tipo == "medico"
       doctor = Doctor.find_by(user_id: current_user.id)
-      @appointments = Appointment.where("fecha = ? AND doctor_id = ?", DateTime.now.to_date, doctor.id).order(:hora).paginate(:per_page => 4, :page => params[:page])
+      @appointments = Appointment.search(params[:search]).where(doctor_id: doctor.id).order(:hora).paginate(:per_page => 4, :page => params[:page])
     else
-      @appointments = Appointment.where(fecha: DateTime.now.to_date).order(:hora).paginate(:per_page => 4, :page => params[:page])
+      @appointments = Appointment.search(params[:search]).order(:hora).paginate(:per_page => 4, :page => params[:page])
     end
   end
 
   def citas_por_doctor
-    @appointments = Appointment.where("fecha >= ? AND doctor_id = ?", DateTime.now.to_date, params[:doctor_id]).order(:fecha).order(:hora).paginate(:per_page => 4, :page => params[:page])
+    @appointments = Appointment.doctor_search(params[:search]).where(doctor_id: params[:doctor_id]).order(:fecha).order(:hora).paginate(:per_page => 4, :page => params[:page])
   end
   # GET /appointments/1
   # GET /appointments/1.json
@@ -41,12 +41,12 @@ class AppointmentsController < ApplicationController
 
   def cancelar
     @appointment.update_attribute(:estado, false)
-    redirect_to appointments_path
+    redirect_to itas_del_dia_appointments_path
   end
 
   def reactivar
     @appointment.update_attribute(:estado, true)
-    redirect_to appointments_path
+    redirect_to itas_del_dia_appointments_path
   end
 
   # POST /appointments
@@ -56,27 +56,34 @@ class AppointmentsController < ApplicationController
     if params[:cedula_paciente].blank?
       flash.keep[:notice] = "Por favor introduzca una cedula valida"
       render :new
-    elsif Patient.existente(params[:cedula_paciente])
-      @appointment.patient_id = Patient.existente(params[:cedula_paciente]).id
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Cita creada con exito.' }
-        format.json { render :show, status: :created, location: @appointment }
-      else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
-    end
-    elsif
-      paciente = Patient.create(cedula: params[:cedula_paciente])
-      @appointment.patient_id = paciente.id
-      if @appointment.save
-        redirect_to edit_patient_path(paciente), notice: 'Cita creada con exito.'   
-      else
+    else
+      if params[:cedula_paciente] =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/
+        if Patient.existente(params[:cedula_paciente])
+          @appointment.patient_id = Patient.existente(params[:cedula_paciente]).id
         respond_to do |format|
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
+          if @appointment.save
+            format.html { redirect_to @appointment, notice: 'Cita creada con exito.' }
+            format.json { render :show, status: :created, location: @appointment }
+          else
+            format.html { render :new }
+            format.json { render json: @appointment.errors, status: :unprocessable_entity }
+          end
+        end
+        else
+          paciente = Patient.create(nombre: "no indicado", apellido: "no indicado", telefono: "no indicado", edad: "0", cedula: params[:cedula_paciente])
+          @appointment.patient_id = paciente.id
+          if @appointment.save
+            redirect_to edit_patient_path(paciente), notice: 'Cita creada con exito.'   
+          else
+            respond_to do |format|
+            format.html { render :new }
+            format.json { render json: @appointment.errors, status: :unprocessable_entity }
+            end
+          end
+        end
+      else
+      flash.keep[:notice] = "La cedula debe ser numerica"
+      render :new
       end
     end
   end

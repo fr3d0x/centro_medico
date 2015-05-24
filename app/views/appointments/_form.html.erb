@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <p id="notice"><%= notice %></p>
+  <p id="notice"><%= flash[:notice] %></p>
 
   <div class="field">
     <%= f.label :Fecha %><br>
@@ -20,7 +20,7 @@
     <%= f.label :hora %><br>
     <%= f.time_field :hora %>
   </div>
-    <div class="field">
+  <div class="field">
     <%= f.label :motivo %><br>
     <%= f.collection_select(:motivo, @registros.buscar_tabla(6) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
   </div>
@@ -32,7 +32,7 @@
   </div>
   <div class="field">
     <%= f.label :doctor %><br>
-    <%= f.collection_select(:doctor_id, Doctor.all, :id, :nombre, {:include_blank => true}, {:multiple => false})  %>
+    <%= f.collection_select(:doctor_id, Doctor.doctors, :id, :nombre, {:include_blank => true}, {:multiple => false})  %>
   </div>
 
   <div class="actions">

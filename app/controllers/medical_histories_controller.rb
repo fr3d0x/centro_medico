@@ -69,6 +69,6 @@ class MedicalHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medical_history_params
-      params.require(:medical_history).permit(:tipo_sangre, :peso, :altura, :posee_alergias, :alergias, :fumador, :ocupacion, :antecedentes_lesiones, :antecedentes_familiares, :condicion_medica_actual, :cirugias, :reg_its_sida)
+      params.require(:medical_history).permit(:tipo_sangre, :peso, :altura, :posee_alergias, :alergias, :fumador, :ocupacion, :antecedentes_lesiones, :antecedentes_familiares, :condicion_medica_actual, :cirugias, :reg_its_sida, :patient_id)
     end
 end

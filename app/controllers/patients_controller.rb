@@ -25,16 +25,13 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new
     @patient.build_medical_history
-    @patient.num_hist_medica = @patient.medical_history.id 
+    @patient.num_hist_medica = @patient.medical_history.id.to_s.rjust(4, '0') 
   end
 
   # GET /patients/1/edit
   def edit
-    if @patient.medical_history == nil
-      @patient.build_medical_history
-    end
-    if @patient.num_hist_medica.blank?
-      @patient.num_hist_medica = @patient.medical_history.id
+    if @patient.medical_history.blank?
+      @hist_medica = @patient.build_medical_history
     end
   end
 
@@ -86,6 +83,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:cedula, :num_hist_medica, :apellido, :nombre, :fecha_nacimiento, :edad, :fecha_ingreso, :estado_civil, :telefono, :direccion, :medical_history_attributes => [:id, :tipo_sangre, :peso, :altura, :posee_alergias, :alergias, :fumador, :ocupacion, :antecedentes_lesiones, :antecedentes_familiares, :condicion_medica_actual, :cirugias, :reg_its_sida])
+      params.require(:patient).permit(:id, :cedula, :num_hist_medica, :apellido, :nombre, :fecha_nacimiento, :edad, :fecha_ingreso, :estado_civil, :telefono, :direccion, :medical_history_attributes => [:id, :tipo_sangre, :peso, :altura, :posee_alergias, :alergias, :fumador, :ocupacion, :antecedentes_lesiones, :antecedentes_familiares, :condicion_medica_actual, :cirugias, :reg_its_sida])
     end
 end

@@ -2,6 +2,8 @@
 
 <p id="notice"><%= notice %></p>
 
+<h1>Control pediatrico del paciente <%=@paciente.nombre%> <%=@paciente.apellido%></h1>
+
 <p>
   <strong>B.c.g1: </strong>&nbsp
   <%= @pediatric_control.bcg1 %>&nbsp&nbsp 
@@ -121,4 +123,4 @@
 <%= link_to "Imprimir historial (pdf)", pediatric_control_path(@pediatric_control, :format => 'pdf'), target: "_blank" %><br>
 
 <%= link_to 'Edit', edit_pediatric_control_path(@pediatric_control) %> |
-<%= link_to 'Back', pediatric_controls_path %>
+<%= link_to 'Back', pediatric_patients_path %>

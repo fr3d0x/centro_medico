@@ -38,4 +38,8 @@ $(function() {
     $.get(this.action, $("#dynamic_search").serialize(), null, 'script');
     return false;
   });
+    $('#pediatric_patients').on('click', '.pagination a', function() {
+    $.get(this.href, null, null, 'script');
+    return false;
+  });
 });

@@ -40,16 +40,16 @@ table{
 	padding-right: 1.2em;
 }
 table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+	border: 1px solid black;
+  border-collapse: collapse;
 }
 td {
     padding: 10px;
     text-align: left;
 }
 th {
-    background-color: #F24C27;
-    color: #FFFFFA;
+    background-color: #2ECCFA;
+    color: #000;
     text-align: center;
     padding: 10px;
 }

@@ -1,6 +1,11 @@
 <% if current_user.tipo == "medico" %>
+
+<%= form_tag @citas_del_dia_appointments_path, :method => 'get', :id => "appointments_search" do%>
+    <%= date_field_tag :search, params[:search] %>
+    <%= submit_tag "buscar", :name => nil %>
+<%end%>
+
 	<div><%= render 'doc_index' %></div>
 <%else%>
 	<div><%= render 'appointments' %></div>
 <%end%>
-<%= link_to 'Nueva Cita', new_appointment_path %>

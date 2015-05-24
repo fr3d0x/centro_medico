@@ -107,6 +107,6 @@
   <div><%= render 'pediatric_appointments' %></div><br><br>
 <%end%>
 
-
+<%= link_to "Imprimir historial (pdf)", pediatric_patient_path(@pediatric_patient, :format => 'pdf'), target: "_blank" %>|
 <%= link_to 'Edit', edit_pediatric_patient_path(@pediatric_patient) %> |
 <%= link_to 'Back', pediatric_patients_path %>

@@ -9,7 +9,7 @@
 
 <p>
   <strong>Num hist medica:</strong>
-  <%= @patient.num_hist_medica.to_s.rjust(4, '0') %>
+  <%= @patient.num_hist_medica %>
 </p>
 
 <p>
@@ -53,6 +53,197 @@
 </p>
 
 <div>
+  <% if @patient.pediatric_history %>
+    <p>
+      <strong>Historial pediatrico:</strong>
+    </p>
+
+    <p>
+      <strong>Genero:</strong>
+      <%= @patient.pediatric_history.genero %>
+    </p>
+
+    <p>
+      <strong>Lugar nacimiento:</strong>
+      <%= @patient.pediatric_history.lugar_nacimiento %>
+    </p>
+
+    <p>
+      <strong>Lugar residencia:</strong>
+      <%= @patient.pediatric_history.lugar_residencia %>
+    </p>
+
+    <p>
+      <strong>Padre:</strong>
+      <%= @patient.pediatric_history.padre %>
+    </p>
+
+    <p>
+      <strong>Madre:</strong>
+      <%= @patient.pediatric_history.madre %>
+    </p>
+
+    <p>
+      <strong>Diagnostico familiar:</strong>
+      <%= @patient.pediatric_history.diagnostico_familiar %>
+    </p>
+
+    <p>
+      <strong>Antecedentes pre-natales:</strong>
+      <%= @patient.pediatric_history.antecedentes_prenatales %>
+    </p>
+
+    <p>
+      <strong>Antecedentes natales:</strong>
+      <%= @patient.pediatric_history.antecedentes_natales %>
+    </p>
+
+    <p>
+      <strong>Antecedentes post-natales:</strong>
+      <%= @patient.pediatric_history.antecedentes_postnatales %>
+    </p>
+
+    <p>
+      <strong>Sintomas generales:</strong>
+      <%= @patient.pediatric_history.sintomas_generales %>
+    </p>
+</div>
+<div>
+    <% if @patient.pediatric_history.pediatric_control %>
+      <p>
+        <strong>B.c.g1: </strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.bcg1 %>&nbsp&nbsp 
+
+        <strong>B.c.g2: </strong>&nbsp 
+        <%= @patient.pediatric_history.pediatric_control.bcg2 %>&nbsp&nbsp 
+
+        <strong>B.c.g3: </strong>&nbsp 
+        <%= @patient.pediatric_history.pediatric_control.bcg3 %>&nbsp&nbsp  
+      </p>
+
+      <p>
+        <strong>Triple1:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.triple1 %>&nbsp&nbsp
+
+        <strong>Triple2:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.triple2 %>&nbsp&nbsp
+
+        <strong>Triple3:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.triple3 %>&nbsp&nbsp
+      </p>
+
+      <p>
+        <strong>Ref triple1:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.ref_triple1 %>&nbsp&nbsp
+
+        <strong>Ref triple2:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.ref_triple2 %>&nbsp&nbsp
+
+        <strong>Ref triple3:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.ref_triple3 %>&nbsp&nbsp
+      </p>
+
+      <p>
+        <strong>Polio1:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.polio1 %>&nbsp&nbsp
+
+        <strong>Polio2:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.polio2 %>&nbsp&nbsp
+
+        <strong>Polio3:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.polio3 %>&nbsp&nbsp
+      </p>
+
+      <p>
+        <strong>Ref polio1:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.ref_polio1 %>&nbsp&nbsp
+
+        <strong>Ref polio2:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.ref_polio2 %>&nbsp&nbsp
+
+        <strong>Ref polio3:</strong>&nbsp
+        <%= @patient.pediatric_history.pediatric_control.ref_polio3 %>&nbsp&nbsp
+      </p>
+
+      <p>
+        <strong>Sarampion:</strong>
+        <%= @patient.pediatric_history.pediatric_control.sarampion %>
+      </p>
+
+      <p>
+        <strong>Parotiditis:</strong>
+        <%= @patient.pediatric_history.pediatric_control.parotiditis %>
+      </p>
+
+      <p>
+        <strong>Rubeola:</strong>
+        <%= @patient.pediatric_history.pediatric_control.rubeola %>
+      </p>
+
+      <p>
+        <strong>F amarilla:</strong>
+        <%= @patient.pediatric_history.pediatric_control.f_amarilla %>
+      </p>
+
+      <p>
+        <strong>Trivalente:</strong>
+        <%= @patient.pediatric_history.pediatric_control.trivalente %>
+      </p>
+
+      <p>
+        <strong>Otras:</strong>
+        <%= @patient.pediatric_history.pediatric_control.otras %>
+      </p>
+
+      <p>
+        <strong>Observaciones:</strong>
+        <%= @patient.pediatric_history.pediatric_control.observaciones %>
+      </p>
+
+      <p>
+        <strong>Control de crecimiento:</strong>
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Edad</th>
+            <th>Peso</th>
+            <th>Talla</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @patient.pediatric_history.pediatric_control.growth_controls.each do |growth_control| %>
+            <tr>
+              <td><%= growth_control.fecha %></td>
+              <td><%= growth_control.edad %></td>
+              <td><%= growth_control.peso %></td>
+              <td><%= growth_control.talla %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table><br>
+      <% end %>
+    <% end %>
+</div>
+<div>
+<% if @patient.pediatric_appointments %>
+    <h2><strong>Consultas pediatricas:</strong><br></h2>
+      <ol>
+        <% @patient.pediatric_appointments.order(:fecha).order(:hora).each do |appointment| %>
+          <li><%= appointment.motivo %></li>
+          <ul>
+          <li><%= appointment.fecha.strftime('%d/%m/%y') %></li>
+          <li><%= appointment.hora.strftime('%I:%M.%P')  %></li>
+          <li><%= appointment.doctor.nombre %></li>
+          <li><%= appointment.doctor.especialidad %></li>
+          </ul>
+        <%end%>
+      </ol>
+    <% end %>
+</div>
+<div>
 <% if @patient.medical_history %>
   <h2><strong>Historial:</strong><br></h3>
     <p>
@@ -66,14 +257,6 @@
     <p>
     <strong>Altura: </strong>
     <%= @patient.medical_history.altura %><br>
-    </p>
-    <p>
-    <strong>Posee alergias? </strong><br>
-      <%if (@patient.medical_history.posee_alergias==true)%>
-        <%= :si %>
-      <%else%>
-        <%= :no %>
-      <%end%>
     </p>
     <p>
     <strong>Cuales son: </strong>
@@ -124,7 +307,7 @@
   <div><%= render 'appointments' %></div>
 <%end%>
 
-<%= link_to "Imprimir historial (pdf)", patient_path(@patient, :format => 'pdf'), target: "_blank" %><br>
+<%= link_to "Imprimir historial (pdf)", patient_path(@patient, :format => 'pdf'), target: "_blank" %>|
 
 <%= link_to 'Editar', edit_patient_path(@patient) %> |
 <%= link_to 'Atras', patients_path %>

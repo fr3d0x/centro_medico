@@ -10,6 +10,7 @@ class PediatricControlsController < ApplicationController
   # GET /pediatric_controls/1
   # GET /pediatric_controls/1.json
   def show
+    @paciente = @pediatric_control.pediatric_history.pediatric_patient
     respond_to do |format|
       format.html
       format.pdf do
@@ -29,6 +30,7 @@ class PediatricControlsController < ApplicationController
 
   # GET /pediatric_controls/1/edit
   def edit
+    @paciente = @pediatric_control.pediatric_history.pediatric_patient
   end
 
   # POST /pediatric_controls

@@ -41,5 +41,17 @@ class Doctor < ActiveRecord::Base
 	    self.all
 	  end
 	end
+
+  def self.doctors
+  	ped = self.where(:especialidad => 'Pediatria')
+  	doctors = self.all - ped
+  	return doctors
+  end
+
+  def self.pediatras
+  	ped = self.where(:especialidad => 'Pediatria')
+  	return ped
+  end
+
 	
 end
