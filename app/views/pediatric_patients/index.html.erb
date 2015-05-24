@@ -1,0 +1,8 @@
+<%= render "layouts/pediatria" %>
+
+<%= form_tag pediatric_patients_path, :method => 'get', :id => "dynamic_search" do%>
+    <%= text_field_tag :search, params[:search], placeholder: "Buscar Paciente" %>
+    <%= submit_tag "buscar", :name => nil %>
+<%end%>
+
+  <div id = "pediatric_patients"><%= render 'pediatric_patients' %></div>

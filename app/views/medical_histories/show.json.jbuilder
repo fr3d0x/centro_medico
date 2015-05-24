@@ -1,1 +1,0 @@
-json.extract! @medical_history, :id, :tipo_sangre, :peso, :altura, :posee_alergias, :alergias, :fumador, :ocupacion, :antecedentes_lesiones, :antecedentes_familiares, :condicion_medica_actual, :cirugias, :reg_its_sida, :created_at, :updated_at

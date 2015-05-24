@@ -46,6 +46,6 @@
     <%= f.collection_select(:doctor_id, Doctor.pediatras, :id, :nombre, {:include_blank => true}, {:multiple => false})  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar"%>
   </div>
 <% end %>
