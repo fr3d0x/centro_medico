@@ -2,7 +2,8 @@ class AppointmentReportPdf < Prawn::Document
 	def initialize(appointment_report)
 		super(top_margin: 30)
 		@appointment_report = appointment_report
-		move_down(65)
+		image ::Rails.root.join('public','images','virgen_icono.jpg')
+		move_down(25)
 		text "Informe medico de la cita", :size => 25, :style => :bold
 		text "Medico que prescribe: #{@appointment_report.appointment.doctor.nombre + ' ' + @appointment_report.appointment.doctor.apellido}"
 		text "Telefono: #{@appointment_report.appointment.doctor.telefono1}"

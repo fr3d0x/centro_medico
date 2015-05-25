@@ -114,12 +114,10 @@ ActiveRecord::Schema.define(version: 20150516174112) do
     t.string   "relacion"
     t.integer  "pediatric_patient_id"
     t.integer  "patient_id"
-    t.integer  "doctor_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
-  add_index "pediatric_appointments", ["doctor_id"], name: "index_pediatric_appointments_on_doctor_id", using: :btree
   add_index "pediatric_appointments", ["patient_id"], name: "index_pediatric_appointments_on_patient_id", using: :btree
   add_index "pediatric_appointments", ["pediatric_patient_id"], name: "index_pediatric_appointments_on_pediatric_patient_id", using: :btree
 
@@ -243,7 +241,6 @@ ActiveRecord::Schema.define(version: 20150516174112) do
   add_foreign_key "doctors", "users"
   add_foreign_key "growth_controls", "pediatric_controls"
   add_foreign_key "medical_histories", "patients"
-  add_foreign_key "pediatric_appointments", "doctors"
   add_foreign_key "pediatric_appointments", "patients"
   add_foreign_key "pediatric_appointments", "pediatric_patients"
   add_foreign_key "pediatric_controls", "pediatric_histories"

@@ -25,8 +25,8 @@
         <td><%= pediatric_patient.fecha_ingreso %></td>
         <td><%= pediatric_patient.telefono_padre %></td>
         <td><%= pediatric_patient.telefono_madre %></td>
-        <td><%= link_to 'Show', pediatric_patient %></td>
-        <td><%= link_to 'Edit', edit_pediatric_patient_path(pediatric_patient) %></td>
+        <td><%= link_to 'Ver', pediatric_patient %></td>
+        <td><%= link_to 'Editar datos', edit_pediatric_patient_path(pediatric_patient) %></td>
         <% if pediatric_patient.pediatric_history %>
           <%if pediatric_patient.pediatric_history.pediatric_control %>
             <td><%= link_to 'Actualizar Control', edit_pediatric_control_path(pediatric_patient.pediatric_history.pediatric_control) %></td>
