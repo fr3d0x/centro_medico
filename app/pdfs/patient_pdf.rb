@@ -1,17 +1,43 @@
 class PatientPdf< Prawn::Document
+
+	def age(dob)
+  now = Time.now.utc.to_date
+  now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+	end
+
 	def initialize(patient)
 		super(top_margin: 40)
 		@patient = patient
+		bounding_box([-25,750], :width => bounds.right/2) do
+		image ::Rails.root.join('public','images','Logo_ADS.jpg'), :scale => 0.25
+		end
+		bounding_box([0,740], :width => bounds.right) do
+		text "Asociacion Damas Salesianas (ADS)", :align => :center, :style => :bold, :size => 17, :color => '#086A87'
+		text "Centro Médico: María Auxiliadora", :size => 13, :align => :center, :color => '#086A87'
+		text "Telefonos: (0212)2371391/9787405", :size => 13, :align => :center, :color => '#086A87'
+		text "Email: mariaauxiliadora7@cantv.net", :size => 13, :align => :center, :color => '#086A87'
+		end
+		bounding_box([500,750], :width => bounds.left/2) do
+		image ::Rails.root.join('public','images','Virgen.png'), :scale => 0.32
+		end
+		move_down(25)
 		text "Datos Personales de #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
 		text "Numero de Historial: #{@patient.num_hist_medica.to_s.rjust(4, '0')}"
 		text "Cedula: #{@patient.cedula}"
 		text "Fecha de nacimiento: #{@patient.fecha_nacimiento}"
 		text "Fecha de ingreso a la clinica: #{@patient.fecha_ingreso}"
+		text "Sexo: #{@patient.sexo}"
+		if age(@patient.fecha_nacimiento) == 1 
+    	@edadadulta = age(@patient.fecha_nacimiento).to_s + " año"
+   	else 
+      @edadadulta = age(@patient.fecha_nacimiento).to_s + " años"
+  	end
+  	text "Edad : #{@edadadulta}"
 		text "Estado Civil: #{@patient.estado_civil}"
 		text "Telefono: #{@patient.telefono}"
 		text "Direccion: #{@patient.direccion}"
 		text "Estado Civil: #{@patient.estado_civil}"
-		move_down(60)
+		move_down(20)
 		if @patient.pediatric_history
 			text "Historial Pediatrico de #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
 			text "Genero: #{@patient.pediatric_history.genero}"
@@ -56,9 +82,22 @@ class PatientPdf< Prawn::Document
 			move_down(10)
 			text "Control de crecimiento", :size => 25, :style => :bold
 			controls = @patient.pediatric_history.pediatric_control.growth_controls.map do |control|
+				if age(@patient.fecha_nacimiento) < 1 
+        	if (DateTime.now.to_date - @patient.fecha_nacimiento).to_i / 30 == 1 
+          	@edad = ((DateTime.now.to_date - @patient.fecha_nacimiento).to_i / 30).to_s + " mes"
+        	else 
+          	@edad = ((DateTime.now.to_date - @patient.fecha_nacimiento).to_i / 30).to_s + " meses"
+        end
+      	else 
+        	if age(@patient.fecha_nacimiento) == 1 
+          	@edad = age(@patient.fecha_nacimiento).to_s + " año"
+        	else
+          	@edad = age(@patient.fecha_nacimiento).to_s + " años"
+        	end
+      	end
 			  [
 			    control.fecha,
-			    control.edad,
+			    @edad,
 			    control.peso,
 			    control.talla
 			  ]
@@ -71,9 +110,9 @@ class PatientPdf< Prawn::Document
 			end
 		end
 	end
-		move_down(60)
-		text "Historial Medico de #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
 		move_down(30)
+		text "Historial Medico de #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
+		move_down(5)
 		text "Tipo de sangre: #{@patient.medical_history.tipo_sangre}"
 		text "Peso: #{@patient.medical_history.peso }"
 		text "Altura: #{@patient.medical_history.altura }"
@@ -83,6 +122,7 @@ class PatientPdf< Prawn::Document
 		else
 		  fuma = "no"
 		end
+		text "Fumador?: #{fuma}"
 		text "Ocupacion: #{@patient.medical_history.ocupacion}"
 		text "Lesiones: #{@patient.medical_history.antecedentes_lesiones}"
 		text "Antecedentes Familiares: #{@patient.medical_history.antecedentes_familiares}"
@@ -93,25 +133,29 @@ class PatientPdf< Prawn::Document
 		else
 		  sida = "no"
 		end
-		text "Fuma?: #{sida}"
+		text "Its Sida?: #{sida}"
 		move_down(30)
-		text "Medicos del paciente #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
-		doctores = @patient.doctors.uniq
-		doctores.each do |doctor|
-			text "nombre: #{doctor.nombre + ' ' + doctor.apellido + ', ' + 'especialidad: '+ doctor.especialidad}"
+		if (@patient.doctors)
+			text "Medicos del paciente #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
+			doctores = @patient.doctors.uniq
+			doctores.each do |doctor|
+				text "nombre: #{doctor.nombre + ' ' + doctor.apellido + ', ' + 'especialidad: '+ doctor.especialidad}"
+			end
 		end
 		move_down(30)
-		text "Consultas del paciente #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
-		i = 1
-		consultas = @patient.appointments
-		consultas.each do |consulta|
-		  i
-		  text "#{i}.-"
-			text "fecha: #{consulta.fecha}"
-			text "motivo: #{consulta.motivo}"
-			text "doctor: #{consulta.doctor.nombre + ' ' + consulta.doctor.apellido + ', ' + 'especialidad: '+ consulta.doctor.especialidad}"
-			i = i+1
-		  move_down(15)
+		if (@patient.appointments)
+			text "Consultas del paciente #{@patient.nombre + ' ' + @patient.apellido}", :size => 25, :style => :bold
+			i = 1
+			consultas = @patient.appointments
+			consultas.each do |consulta|
+			  i
+			  text "#{i}.-"
+				text "fecha: #{consulta.fecha}"
+				text "motivo: #{consulta.motivo}"
+				text "doctor: #{consulta.doctor.nombre + ' ' + consulta.doctor.apellido + ', ' + 'especialidad: '+ consulta.doctor.especialidad}"
+				i = i+1
+			  move_down(15)
+			end
 		end
 	end
 end

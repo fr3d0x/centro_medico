@@ -10,3 +10,5 @@
 <%else%>
 	<div><%= render 'appointments' %></div>
 <%end%>
+
+<%= link_to "Imprimir citas del dia", citas_del_dia_appointments_path(@appointments, :format => 'pdf', :search => params[:search]), target: "_blank" %>

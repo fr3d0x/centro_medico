@@ -20,13 +20,26 @@
 
   <tbody>
     <% @patients.each do |patient| %>
+      <% if age(patient.fecha_nacimiento) < 1 %>
+        <% if (DateTime.now.to_date - patient.fecha_nacimiento).to_i / 30 == 1 %>
+          <% @edad = ((DateTime.now.to_date - patient.fecha_nacimiento).to_i / 30).to_s + " mes" %>
+        <% else %>
+          <% @edad = ((DateTime.now.to_date - patient.fecha_nacimiento).to_i / 30).to_s + " meses"  %>
+        <%end%>
+      <% else %>
+        <% if age(patient.fecha_nacimiento) == 1 %>
+          <% @edad = (age(patient.fecha_nacimiento)).to_s + " año" %>
+        <% else %>
+          <% @edad = (age(patient.fecha_nacimiento)).to_s + " años" %>
+        <%end%>
+      <%end%>
       <tr>
         <td style="text-align: center;"><%= patient.cedula %></td>
         <td style="text-align: center;"><%= patient.num_hist_medica.to_s.rjust(4, '0') %></td>
         <td style="text-align: center;"><%= patient.apellido %></td>
         <td style="text-align: center;"><%= patient.nombre %></td>
         <td style="text-align: center; width: 10em;"><%= patient.fecha_nacimiento %></td>
-        <td style="text-align: center;"><%= patient.edad %></td>
+        <td style="text-align: center; width: 10em;"><%= @edad %></td>
         <td style="text-align: center; width: 10em;"><%= patient.fecha_ingreso %></td>
         <td style="text-align: center;"><%= patient.estado_civil %></td>
         <td style="text-align: center;"><%= patient.telefono %></td>

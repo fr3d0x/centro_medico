@@ -25,6 +25,8 @@
         <td><%= pediatric_appointment.pediatric_patient.nombre %></td>
         <td><%= pediatric_appointment.responsable %></td>
         <td><%= pediatric_appointment.telefono %></td>
+        <td><%= pediatric_appointment.doctor.nombre %></td> 
+        <td><%= pediatric_appointment.doctor.telefono1 %></td>
         <%if (pediatric_appointment.estado==true)%>
           <td><%= 'activa' %></td>
         <%else%>

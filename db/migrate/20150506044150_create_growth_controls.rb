@@ -2,7 +2,6 @@ class CreateGrowthControls < ActiveRecord::Migration
   def change
     create_table :growth_controls do |t|
       t.date :fecha
-      t.string :edad
       t.string :peso
       t.string :talla
       t.references :pediatric_control, index: true

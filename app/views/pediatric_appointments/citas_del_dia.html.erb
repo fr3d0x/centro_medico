@@ -10,3 +10,5 @@
 <%else%>
 	<div><%= render 'pediatric_appointments' %></div>
 <%end%>
+
+<%= link_to "Imprimir citas pediatricas del dia", citas_del_dia_pediatric_appointments_path(@pediatric_appointments, :format => 'pdf', :search => params[:search]), target: "_blank" %>

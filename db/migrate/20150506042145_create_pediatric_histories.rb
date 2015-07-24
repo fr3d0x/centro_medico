@@ -1,7 +1,6 @@
 class CreatePediatricHistories < ActiveRecord::Migration
   def change
     create_table :pediatric_histories do |t|
-      t.string :edad
       t.string :genero
       t.string :peso
       t.string :talla

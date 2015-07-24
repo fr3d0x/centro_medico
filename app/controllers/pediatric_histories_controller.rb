@@ -1,5 +1,6 @@
 class PediatricHistoriesController < ApplicationController
   before_action :set_pediatric_history, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /pediatric_histories
   # GET /pediatric_histories.json
@@ -28,7 +29,7 @@ class PediatricHistoriesController < ApplicationController
 
     respond_to do |format|
       if @pediatric_history.save
-        format.html { redirect_to @pediatric_history, notice: 'Pediatric history was successfully created.' }
+        format.html { redirect_to @pediatric_history, notice: 'Historial pediatrico creado con exito.' }
         format.json { render :show, status: :created, location: @pediatric_history }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class PediatricHistoriesController < ApplicationController
   def update
     respond_to do |format|
       if @pediatric_history.update(pediatric_history_params)
-        format.html { redirect_to @pediatric_history, notice: 'Pediatric history was successfully updated.' }
+        format.html { redirect_to @pediatric_history, notice: 'Historial pediatrico actualizado con exito.' }
         format.json { render :show, status: :ok, location: @pediatric_history }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class PediatricHistoriesController < ApplicationController
   def destroy
     @pediatric_history.destroy
     respond_to do |format|
-      format.html { redirect_to pediatric_histories_url, notice: 'Pediatric history was successfully destroyed.' }
+      format.html { redirect_to pediatric_histories_url, notice: 'Historial borrado creado con exito.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class PediatricHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pediatric_history_params
-      params.require(:pediatric_history).permit(:edad, :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :ced_padre, :ced_madre, :madre, :diagnostico_familiar, :antecedentes_prenatales, :antecedentes_natales, :antecedentes_postnatales, :sintomas_generales)
+      params.require(:pediatric_history).permit( :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :ced_padre, :ced_madre, :madre, :diagnostico_familiar, :antecedentes_prenatales, :antecedentes_natales, :antecedentes_postnatales, :sintomas_generales)
     end
 end

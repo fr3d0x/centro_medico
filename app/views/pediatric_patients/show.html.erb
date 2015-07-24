@@ -36,7 +36,19 @@
     <h2><strong>Historial:</strong><br></h2>
     <p>
       <strong>Edad:</strong>
-      <%= @pediatric_patient.pediatric_history.edad %>
+      <% if age(@pediatric_patient.fecha_nacimiento) < 1 %>
+        <% if (DateTime.now.to_date - @pediatric_patient.fecha_nacimiento).to_i / 30 == 1 %>
+          <%= (DateTime.now.to_date - @pediatric_patient.fecha_nacimiento).to_i / 30 %> mes
+        <% else %>
+          <%= (DateTime.now.to_date - @pediatric_patient.fecha_nacimiento).to_i / 30 %> meses
+        <%end%>
+      <% else %>
+        <% if age(@pediatric_patient.fecha_nacimiento) == 1 %>
+          <%= age(@pediatric_patient.fecha_nacimiento)%> año
+        <% else %>
+          <%= age(@pediatric_patient.fecha_nacimiento)%> años
+        <%end%>
+      <%end%>
     </p>
 
     <p>

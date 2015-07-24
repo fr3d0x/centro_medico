@@ -1,5 +1,6 @@
 class PediatricControlsController < ApplicationController
   before_action :set_pediatric_control, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /pediatric_controls
   # GET /pediatric_controls.json
@@ -40,7 +41,7 @@ class PediatricControlsController < ApplicationController
 
     respond_to do |format|
       if @pediatric_control.save
-        format.html { redirect_to @pediatric_control, notice: 'Pediatric control was successfully created.' }
+        format.html { redirect_to @pediatric_control, notice: 'Control pediatrico creado con exito.' }
         format.json { render :show, status: :created, location: @pediatric_control }
       else
         format.html { render :new }
@@ -54,7 +55,7 @@ class PediatricControlsController < ApplicationController
   def update
     respond_to do |format|
       if @pediatric_control.update(pediatric_control_params)
-        format.html { redirect_to @pediatric_control, notice: 'Pediatric control was successfully updated.' }
+        format.html { redirect_to @pediatric_control, notice: 'Control pediatrico actualizado con exito.' }
         format.json { render :show, status: :ok, location: @pediatric_control }
       else
         format.html { render :edit }
@@ -68,7 +69,7 @@ class PediatricControlsController < ApplicationController
   def destroy
     @pediatric_control.destroy
     respond_to do |format|
-      format.html { redirect_to pediatric_controls_url, notice: 'Pediatric control was successfully destroyed.' }
+      format.html { redirect_to pediatric_controls_url, notice: 'Control pediatrico borrado con exito..' }
       format.json { head :no_content }
     end
   end
@@ -81,6 +82,6 @@ class PediatricControlsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pediatric_control_params
-      params.require(:pediatric_control).permit(:bcg1, :bcg2, :bcg3, :triple1, :triple2, :triple3, :ref_triple1, :ref_triple2, :ref_triple3, :polio1, :polio2, :polio3, :ref_polio1, :ref_polio2, :ref_polio3, :sarampion, :parotiditis, :rubeola, :f_amarilla, :trivalente, :otras, :observaciones, :pediatric_history_id,  :growth_controls_attributes => [:id, :fecha, :edad, :peso, :talla])
+      params.require(:pediatric_control).permit(:bcg1, :bcg2, :bcg3, :triple1, :triple2, :triple3, :ref_triple1, :ref_triple2, :ref_triple3, :polio1, :polio2, :polio3, :ref_polio1, :ref_polio2, :ref_polio3, :sarampion, :parotiditis, :rubeola, :f_amarilla, :trivalente, :otras, :observaciones, :pediatric_history_id,  :growth_controls_attributes => [:id, :fecha, :peso, :talla])
     end
 end

@@ -11,30 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :apellido %><br>
-    <%= f.text_field :apellido %>
-  </div>
-  <div class="field">
-    <%= f.label :fecha_nacimiento %><br>
-    <%= f.date_field :fecha_nacimiento %>
-  </div>
-  <div class="field">
-    <%= f.label :fecha_ingreso %><br>
-    <%= f.date_field :fecha_ingreso %>
-  </div>
-  <div class="field">
-    <%= f.label :telefono_padre %><br>
-    <%= f.text_field :telefono_padre %>
-  </div>
-  <div class="field">
-    <%= f.label :telefono_madre %><br>
-    <%= f.text_field :telefono_madre %>
-  </div>
+  <h3> Datos Personales </h3>
+  <table class = "noborder">
+    <tr class = "noborder">
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :nombre %><br>
+          <%= f.text_field :nombre %>
+        </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :apellido %><br>
+          <%= f.text_field :apellido %>
+        </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :fecha_nacimiento %><br>
+          <%= f.date_field :fecha_nacimiento %>
+        </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :fecha_ingreso %><br>
+          <%= f.date_field :fecha_ingreso %>
+        </div>
+      </td>
+    </tr>
+    <tr class = "noborder">
+      <td class = "noborder"
+        <div class="field">
+          <%= f.label :telefono_padre %><br>
+          <%= f.text_field :telefono_padre %>
+        </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :telefono_madre %><br>
+          <%= f.text_field :telefono_madre %>
+        </div>
+      </td>
+    </tr>
+  </table>
   <div class="field">
     <%= f.fields_for :pediatric_history do |builder| %>
     <%= render 'pediatric_history_fields', f: builder %>

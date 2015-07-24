@@ -12,19 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :diagnostico %><br>
+    <%= f.label 'Diagnóstico' %><br>
     <%= f.text_area :diagnostico %>
   </div>
   <div class="field">
     <%= f.label :tratamiento %><br>
     <%= f.text_area :tratamiento %>
   </div>
-  <div class="field">
-    <%= f.label :informe_medico %><br>
-    <%= f.text_area :informe_medico %>
+    <div class="field">
+    <%= f.label 'Reposo' %><br>
+    <%= f.text_area :reposo %>
+  </div>
+    <div class="field">
+    <%= f.label 'Examanes Solicitados' %><br>
+    <%= f.text_area :examenes_solicitados %>
   </div>
   <div class="actions">
     <%= f.submit "Guardar"%>
   </div>
   <%= f.hidden_field :appointment_id %>
+  <%= f.hidden_field :pediatric_appointment_id %>
+
 <% end %>

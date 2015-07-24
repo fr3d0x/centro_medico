@@ -10,8 +10,8 @@ class Patient < ActiveRecord::Base
 	validates :cedula, uniqueness: {message: "Esta cedula ya existe"}
 	validates :cedula, numericality: {message: "La cedula debe ser numerica"}
 	validates :apellido, :nombre, presence: {message: "Debe el nombre y apellido del paciente"}
-	validates :edad, presence: {message: "Debe indicar la edad del paciente"}
 	validates :telefono, presence: {message: "Debe indicar el telefono del paciente"}
+	validates :fecha_nacimiento, presence: {message: "Debe indicar la fecha de nacimiento del paciente"}
 
 	protected
 

@@ -1,32 +1,65 @@
-<fieldset>
-    <%= f.label :edad %><br>
-    <%= f.text_field :edad %><br>
-    <%= f.label :genero %><br>
-    <%= f.collection_select(:genero, @registros.buscar_tabla(5) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %><br>
-    <%= f.label :peso %><br>
-    <%= f.text_field :peso %><br>
-    <%= f.label :talla %><br>
-    <%= f.text_field :talla %><br>
-    <%= f.label :lugar_nacimiento %><br>
-    <%= f.text_field :lugar_nacimiento %><br>
-    <%= f.label :lugar_residencia %><br>
-    <%= f.text_field :lugar_residencia %><br>
-    <%= f.label :padre %><br>
-    <%= f.text_field :padre %><br>
-    <%= f.label 'Cedula del Padre' %><br>
-    <%= f.text_field :ced_padre %><br>
-    <%= f.label :madre %><br>
-    <%= f.text_field :madre %><br>
-    <%= f.label 'Cedula de la Madre' %><br>
-    <%= f.text_field :ced_madre %><br>
-    <%= f.label :diagnostico_familiar %><br>
-    <%= f.text_area :diagnostico_familiar %><br>
-    <%= f.label :antecedentes_prenatales %><br>
-    <%= f.text_area :antecedentes_prenatales %><br>
-    <%= f.label :antecedentes_natales %><br>
-    <%= f.text_area :antecedentes_natales %><br>
-    <%= f.label :antecedentes_postnatales %><br>
-    <%= f.text_area :antecedentes_postnatales %><br>
-    <%= f.label :sintomas_generales %><br>
-    <%= f.text_area :sintomas_generales %><br>
-</fieldset>
+<h3> Datos de historial pediatrico </h3>
+<table class = "noborder">
+  <tr class = "noborder">
+    <td class = "noborder">
+        <%= f.label :genero %><br>
+        <%= f.collection_select(:genero, @registros.buscar_tabla(5) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :peso %><br>
+        <%= f.text_field :peso %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :talla %><br>
+        <%= f.text_field :talla %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :lugar_nacimiento %><br>
+        <%= f.text_field :lugar_nacimiento %>
+    </td>
+  </tr>
+  <tr class = "noborder">
+    <td class = "noborder">
+        <%= f.label :lugar_residencia %><br>
+        <%= f.text_field :lugar_residencia %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :padre %><br>
+        <%= f.text_field :padre %>
+    </td>
+    <td class = "noborder">
+        <%= f.label 'Cedula del Padre' %><br>
+        <%= f.text_field :ced_padre %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :madre %><br>
+        <%= f.text_field :madre %>
+    </td>
+    <td class = "noborder">
+        <%= f.label 'Cedula de la Madre' %><br>
+        <%= f.text_field :ced_madre %>
+    </td>
+  </tr>
+  <tr class = "noborder">
+    <td class = "noborder">
+        <%= f.label :diagnostico_familiar %><br>
+        <%= f.text_area :diagnostico_familiar %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :antecedentes_prenatales %><br>
+        <%= f.text_area :antecedentes_prenatales %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :antecedentes_natales %><br>
+        <%= f.text_area :antecedentes_natales %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :antecedentes_postnatales %><br>
+        <%= f.text_area :antecedentes_postnatales %>
+    </td>
+    <td class = "noborder">
+        <%= f.label :sintomas_generales %><br>
+        <%= f.text_area :sintomas_generales %>
+    </td>
+  </tr>
+</table>

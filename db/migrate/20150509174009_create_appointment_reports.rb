@@ -3,7 +3,8 @@ class CreateAppointmentReports < ActiveRecord::Migration
     create_table :appointment_reports do |t|
       t.text :diagnostico
       t.text :tratamiento
-      t.text :informe_medico
+      t.text :reposo
+      t.text :examenes_solicitados
       t.references :appointment, index: true
       t.references :pediatric_appointment, index: true
       

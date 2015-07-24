@@ -4,8 +4,8 @@ class Doctor < ActiveRecord::Base
 	has_many :doctors, :dependent => :destroy
 	before_save :fields_to_downcase
 
-	validates :especialidad, presence: true, on: :update
-	validates :especialidad, :cedula, :nombre, :apellido, :direccion, :telefono1, presence: {message: "Debe estar presente para crear la cita"}
+	validates :especialidad, presence: {message: "Debe estar presente para actualizar los datos"}, on: :update
+	validates :especialidad, :cedula, :nombre, :apellido, :direccion, :telefono1, presence: {message: "Debe estar presente para agregar al doctor a la base de datos"}
 	validates :direccion, :length => {
     :minimum   => 25,
     :maximum   => 1500,
@@ -23,7 +23,6 @@ class Doctor < ActiveRecord::Base
 
 	def self.search(search)
 		if search
-			search = search.downcase!
 	  	if search == " "
 	  	  self.all
 	  	else

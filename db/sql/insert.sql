@@ -20,6 +20,10 @@ INSERT INTO tables(
 INSERT INTO tables(
             id, tab_nombre, tab_nemonico, tab_descripcion, created_at, updated_at)
     VALUES (6, 'motivo de cita', 'motivci', 'Motivo de cita', timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
+INSERT INTO tables(
+            id, tab_nombre, tab_nemonico, tab_descripcion, created_at, updated_at)
+    VALUES (7, 'sexo del paciente', 'sexo', 'Sexo del paciente', timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
+    
 /* --------------------------------------*/
 /* -------    INSERT REGISTROS    ------ */
 /* --------------------------------------*/
@@ -58,7 +62,7 @@ INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (6, 'enfer', 'Tipo de usuario enfermera', null, 'enfermera', 'Enfermera', 
+    VALUES (6, 'secre', 'Tipo de usuario secretaria', null, 'secretaria', 'Secretaria', 
              null, false, null, true, 2, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
@@ -70,145 +74,157 @@ INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (8, 'tipoa+', 'Tipo de sangre a+', null, 'a+', 'A+', 
+    VALUES (8, 'n/s', 'Tipo de sangre n/s', null, 'n/s', 'N/S', 
              null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (9, 'tipoa-', 'Tipo de sangre a-', null, 'a-', 'A-', 
+    VALUES (9, 'tipoa+', 'Tipo de sangre a+', null, 'a+', 'A+', 
              null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (10, 'tipob+', 'Tipo de sangre b+', null, 'b+', 'B+', 
+    VALUES (10, 'tipoa-', 'Tipo de sangre a-', null, 'a-', 'A-', 
              null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (11, 'tipob-', 'Tipo de sangre b-', null, 'b-', 'B-', 
+    VALUES (11, 'tipob+', 'Tipo de sangre b+', null, 'b+', 'B+', 
              null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (12, 'tipoab+', 'Tipo de sangre ab+', null, 'ab+', 'AB+', 
+    VALUES (12, 'tipob-', 'Tipo de sangre b-', null, 'b-', 'B-', 
              null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (13, 'tipoab-', 'Tipo de sangre ab-', null, 'ab-', 'AB-', 
+    VALUES (13, 'tipoab+', 'Tipo de sangre ab+', null, 'ab+', 'AB+', 
              null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (14, 'tipoo+', 'Tipo de sangre o+', null, 'o+', 'O+', 
+    VALUES (14, 'tipoab-', 'Tipo de sangre ab-', null, 'ab-', 'AB-', 
              null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (15, 'tipoo-', 'Tipo de sangre o-', null, 'o-', 'O+', 
+    VALUES (15, 'tipoo+', 'Tipo de sangre o+', null, 'o+', 'O+', 
              null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (16, 'obste', 'Especialidad obstetricia', null, 'obstetricia', 'Obstetricia', 
+    VALUES (16, 'tipoo-', 'Tipo de sangre o-', null, 'o-', 'O+', 
+             null, false, null, true, 3, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
+INSERT INTO records(
+            id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
+            rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
+            updated_at)
+    VALUES (17, 'obste', 'Especialidad obstetricia', null, 'obstetricia', 'Obstetricia', 
              null, false, null, true, 1, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (17, 'ginec', 'Especialidad gastroenterologia', null, 'gastroenterologia', 'Gastroenterología', 
+    VALUES (18, 'ginec', 'Especialidad gastroenterologia', null, 'gastroenterologia', 'Gastroenterología', 
              null, false, null, true, 1, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (18, 'intern', 'Especialidad internista', null, 'internista', 'Internista', 
+    VALUES (19, 'intern', 'Especialidad internista', null, 'internista', 'Internista', 
              null, false, null, true, 1, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (19, 'gener', 'Especialidad cardiologia', null, 'cardiologia', 'Cardiologia', 
+    VALUES (20, 'gener', 'Especialidad cardiologia', null, 'cardiologia', 'Cardiologia', 
              null, false, null, true, 1, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (20, 'otorr', 'Especialidad otorrinolaringologia', null, 'otorrinolaringologia', 'Otorrinolaringología', 
+    VALUES (21, 'otorr', 'Especialidad otorrinolaringologia', null, 'otorrinolaringologia', 'Otorrinolaringología', 
              null, false, null, true, 1, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (21, 'oftalm', 'Especialidad oftalmología', null, 'oftalmologia', 'Oftalmología', 
+    VALUES (22, 'oftalm', 'Especialidad oftalmología', null, 'oftalmologia', 'Oftalmología', 
              null, false, null, true, 1, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (22, 'ortop', 'Especialidad ortopedia', null, 'ortopedia', 'Ortopedia', 
+    VALUES (23, 'ortop', 'Especialidad ortopedia', null, 'ortopedia', 'Ortopedia', 
              null, false, null, true, 1, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (23, 'fisiot', 'Especialidad fisioterapia', null, 'fisioterapia', 'Fisioterapia', 
+    VALUES (24, 'fisiot', 'Especialidad fisioterapia', null, 'fisioterapia', 'Fisioterapia', 
              null, false, null, true, 1, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (24, 'solte', 'Estado civil Soltero', null, 'soltero/a', 'Soltero/a', 
+    VALUES (25, 'solte', 'Estado civil Soltero', null, 'soltero/a', 'Soltero/a', 
              null, false, null, true, 4, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (25, 'casad', 'Estado civil Casado', null, 'casado/a', 'Casado/a', 
+    VALUES (26, 'casad', 'Estado civil Casado', null, 'casado/a', 'Casado/a', 
              null, false, null, true, 4, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (26, 'viud', 'Estado civil Viudo', null, 'viudo/a', 'Viudo/a', 
+    VALUES (27, 'viud', 'Estado civil Viudo', null, 'viudo/a', 'Viudo/a', 
              null, false, null, true, 4, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (27, 'Masc', 'Masculino', null, 'masculino', 'Masculino', 
+    VALUES (28, 'Masc', 'Masculino', null, 'masculino', 'Masculino', 
              null, false, null, true, 5, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (28, 'Femen', 'Femenino', null, 'femenino', 'Femenino', 
+    VALUES (29, 'Femen', 'Femenino', null, 'femenino', 'Femenino', 
              null, false, null, true, 5, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (29, 'Primingr', 'Primer ingreso', null, 'Primer ingreso', 'Primer ingreso', 
+    VALUES (30, 'Primingr', 'Primer ingreso', null, 'Primer ingreso', 'Primer ingreso', 
              null, false, null, true, 6, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (30, 'contl', 'control', null, 'control', 'Control', 
+    VALUES (31, 'contl', 'control', null, 'control', 'Control', 
              null, false, null, true, 6, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 INSERT INTO records(
             id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
             rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
             updated_at)
-    VALUES (31, 'Infome', 'informe medico', null, 'informe medico', 'Informe medico', 
+    VALUES (32, 'masc', 'masculino', null, 'masculino', 'Masculino', 
+             null, false, null, true, 6, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
+INSERT INTO records(
+            id, rec_nemonico, rec_descripcion, rec_integer, rec_char, rec_varchar, 
+            rec_float, rec_boolean, rec_fecha, rec_activo, table_id, created_at, 
+            updated_at)
+    VALUES (33, 'feme', 'femenino', null, 'femenino', 'Femenino', 
              null, false, null, true, 6, timestamp '2015-05-09 02:00:00', timestamp '2015-05-09 02:00:00');
 
 /* --------------------------------------*/

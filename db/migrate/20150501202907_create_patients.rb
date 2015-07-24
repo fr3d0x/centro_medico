@@ -6,11 +6,11 @@ class CreatePatients < ActiveRecord::Migration
       t.string :apellido
       t.string :nombre
       t.date :fecha_nacimiento
-      t.integer :edad
       t.date :fecha_ingreso
       t.string :estado_civil
       t.string :telefono
       t.text :direccion
+      t.string :sexo
 
       t.timestamps null: false
     end

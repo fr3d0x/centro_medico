@@ -13,7 +13,7 @@ class PediatricPatient < ActiveRecord::Base
 	def self.ya_mayor(record)
 		hist_pediatrico = PediatricHistory.find_by!(pediatric_patient_id: record.id)
 		consultas = PediatricAppointment.where(pediatric_patient_id: record.id)
-		nuevo_paciente = Patient.create(nombre: record.nombre, apellido: record.apellido, telefono: "no indicado", edad: 0, fecha_ingreso: record.fecha_ingreso, cedula: SecureRandom.random_number(100000).to_s.rjust(4, '0') + " Por indicar", fecha_nacimiento: record.fecha_nacimiento)
+		nuevo_paciente = Patient.create(nombre: record.nombre, apellido: record.apellido, telefono: "no indicado", fecha_ingreso: record.fecha_ingreso, cedula: SecureRandom.random_number(100000).to_s.rjust(4, '0') + " Por indicar", fecha_nacimiento: record.fecha_nacimiento)
 		hist_medica = MedicalHistory.create(ocupacion: "Por indicar", antecedentes_lesiones: "Por Indicar", antecedentes_familiares: "Por Indicar", condicion_medica_actual: "Por indicar", cirugias: "Por Indicar", peso: "Por Indicar", altura: " Por Indicar", alergias: "Por Indicar")
 		nuevo_paciente.update_attribute(:num_hist_medica, hist_medica.id.to_s.rjust(4, '0'))
 		hist_pediatrico.pediatric_patient_id = nil

@@ -1,5 +1,6 @@
 class GrowthControlsController < ApplicationController
   before_action :set_growth_control, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /growth_controls
   # GET /growth_controls.json
@@ -28,7 +29,7 @@ class GrowthControlsController < ApplicationController
 
     respond_to do |format|
       if @growth_control.save
-        format.html { redirect_to @growth_control, notice: 'Growth control was successfully created.' }
+        format.html { redirect_to @growth_control, notice: 'Control de crecimiento creado con exito.' }
         format.json { render :show, status: :created, location: @growth_control }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class GrowthControlsController < ApplicationController
   def update
     respond_to do |format|
       if @growth_control.update(growth_control_params)
-        format.html { redirect_to @growth_control, notice: 'Growth control was successfully updated.' }
+        format.html { redirect_to @growth_control, notice: 'Control de crecimiento actualizado con exito.' }
         format.json { render :show, status: :ok, location: @growth_control }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class GrowthControlsController < ApplicationController
   def destroy
     @growth_control.destroy
     respond_to do |format|
-      format.html { redirect_to growth_controls_url, notice: 'Growth control was successfully destroyed.' }
+      format.html { redirect_to growth_controls_url, notice: 'Control de crecimiento borrado con exito.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class GrowthControlsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def growth_control_params
-      params.require(:growth_control).permit(:fecha, :edad, :peso, :talla)
+      params.require(:growth_control).permit(:fecha, :peso, :talla)
     end
 end

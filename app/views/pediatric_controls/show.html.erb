@@ -112,7 +112,19 @@
     <% @pediatric_control.growth_controls.each do |growth_control| %>
       <tr>
         <td><%= growth_control.fecha %></td>
-        <td><%= growth_control.edad %></td>
+        <% if age(@pediatric_control.pediatric_history.pediatric_patient.fecha_nacimiento) < 1 %>
+        <% if (DateTime.now.to_date - @pediatric_control.pediatric_history.pediatric_patient.fecha_nacimiento).to_i / 30 == 1 %>
+          <td><%= (DateTime.now.to_date - @pediatric_control.pediatric_history.pediatric_patient.fecha_nacimiento).to_i / 30 %> mes </td>
+        <% else %>
+          <td><%= (DateTime.now.to_date - @pediatric_control.pediatric_history.pediatric_patient.fecha_nacimiento).to_i / 30 %> meses </td>
+        <%end%>
+      <% else %>
+        <% if age(@pediatric_control.pediatric_history.pediatric_patient.fecha_nacimiento) == 1 %>
+          <td><%= age(@pediatric_control.pediatric_history.pediatric_patient.fecha_nacimiento)%> año</td>
+        <% else %>
+          <td><%= age(@pediatric_control.pediatric_history.pediatric_patient.fecha_nacimiento)%> años </td>
+        <%end%>
+      <%end%>
         <td><%= growth_control.peso %></td>
         <td><%= growth_control.talla %></td>
       </tr>

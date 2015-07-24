@@ -1,7 +1,7 @@
 <%= form_for(@patient) do |f| %>
   <% if @patient.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+      <h2><%= pluralize(@patient.errors.count, "error") %> Prohiben que este paciente se guarde:</h2>
       <ul>
       <% @patient.errors.messages.values.each do |message| %>
         <% message.each do  |m| %>
@@ -11,44 +11,69 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :cedula %><br>
-    <%= f.text_field :cedula %>
-  </div>
-    <%= f.hidden_field :num_hist_medica %>
-  <div class="field">
-    <%= f.label :apellido %><br>
-    <%= f.text_field :apellido %>
-  </div>
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :fecha_nacimiento %><br>
-    <%= f.date_field :fecha_nacimiento %>
-  </div>
-  <div class="field">
-    <%= f.label :edad %><br>
-    <%= f.number_field :edad %>
-  </div>
-  <div class="field">
-    <%= f.label :fecha_ingreso %><br>
-    <%= f.date_field :fecha_ingreso %>
-  </div>
-  <div class="field">
-    <%= f.label :estado_civil %><br>
-    <%= f.collection_select(:estado_civil, @registros.buscar_tabla(4) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
-  </div>
-  <div class="field">
-    <%= f.label :telefono %><br>
-    <%= f.text_field :telefono %>
-  </div>
-  <div class="field">
-    <%= f.label :direccion %><br>
-    <%= f.text_area :direccion %>
-  </div>
+  <h3> Datos Personales </h3>
+  <table class = "noborder">
+    <tr class = "noborder">
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :cedula %><br>
+          <%= f.text_field :cedula %>
+        </div>
+      </td>
+        <%= f.hidden_field :num_hist_medica %>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :apellido %><br>
+          <%= f.text_field :apellido %>
+        </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :nombre %><br>
+          <%= f.text_field :nombre %>
+        </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :fecha_nacimiento %><br>
+          <%= f.date_field :fecha_nacimiento %>
+        </div>
+      </td>
+    </tr>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :fecha_ingreso %><br>
+          <%= f.date_field :fecha_ingreso %>
+        </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :estado_civil %><br>
+          <%= f.collection_select(:estado_civil, @registros.buscar_tabla(4) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
+        </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :telefono %><br>
+          <%= f.text_field :telefono %>
+        </div>
+      </td>
+    </tr>
+    <tr class = "noborder">
+      <td class = "noborder">
+      <div class="field">
+        <%= f.label :direccion %><br>
+        <%= f.text_area :direccion %>
+      </div>
+      </td>
+      <td class = "noborder">
+        <div class="field">
+          <%= f.label :sexo %><br>
+          <%= f.collection_select(:sexo, @registros.buscar_tabla(7) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false})  %>
+        </div>
+      </td>
+    </tr>
+  </table>
   <div class="field">
     <%= f.fields_for :medical_history do |builder| %>
     <%= render 'medical_history_fields', f: builder %>

@@ -27,7 +27,9 @@ Rails.application.routes.draw do
 
   resources :medical_histories
 
-  devise_for :users, controllers: {registrations: 'registrations'}
+  devise_for :users, controllers: {registrations: 'registrations'} do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
 
   get 'user/new'
   
@@ -35,7 +37,12 @@ Rails.application.routes.draw do
 
   resources :tables
 
-  resources :appointment_reports
+  resources :appointment_reports do
+    collection do
+      get :pediatric_report
+      post :pediatric_report
+    end
+  end
 
   resources :appointments do
     collection do
@@ -56,6 +63,8 @@ Rails.application.routes.draw do
     collection do
       get :historial
       post :historial
+      get :nuevo_paciente_desde_cita
+      post :nuevo_paciente_desde_cita
     end
   end
 

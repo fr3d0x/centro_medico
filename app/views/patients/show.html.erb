@@ -29,7 +29,15 @@
 
 <p>
   <strong>Edad:</strong>
-  <%= @patient.edad %>
+  <% if age(@patient.fecha_nacimiento) == 1 %>
+    <%= age(@patient.fecha_nacimiento)%> año
+  <% else %>
+    <%= age(@patient.fecha_nacimiento)%> años
+  <%end%>
+</p>
+<p>
+  <strong>Sexo:</strong>
+  <%= @patient.sexo %>
 </p>
 
 <p>
@@ -217,7 +225,19 @@
           <% @patient.pediatric_history.pediatric_control.growth_controls.each do |growth_control| %>
             <tr>
               <td><%= growth_control.fecha %></td>
-              <td><%= growth_control.edad %></td>
+              <% if age(@patient.fecha_nacimiento) < 1 %>
+                <% if (DateTime.now.to_date - @patient.fecha_nacimiento).to_i / 30 == 1 %>
+                  <td><%= (DateTime.now.to_date - @patient.fecha_nacimiento).to_i / 30 %> mes </td>
+                <% else %>
+                  <td><%= (DateTime.now.to_date - @patient.fecha_nacimiento).to_i / 30 %> meses </td>
+                <%end%>
+              <% else %>
+                <% if age(@patient.fecha_nacimiento) == 1 %>
+                  <td><%= age(@patient.fecha_nacimiento)%> año</td>
+                <% else %>
+                  <td><%= age(@patient.fecha_nacimiento)%> años </td>
+                <%end%>
+              <%end%>
               <td><%= growth_control.peso %></td>
               <td><%= growth_control.talla %></td>
             </tr>
@@ -259,7 +279,7 @@
     <%= @patient.medical_history.altura %><br>
     </p>
     <p>
-    <strong>Cuales son: </strong>
+    <strong>Alergias: </strong>
     <%= @patient.medical_history.alergias %><br>
     </p>
     <p>

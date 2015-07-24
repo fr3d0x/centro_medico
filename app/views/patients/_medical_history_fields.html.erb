@@ -1,24 +1,51 @@
-<fieldset>
-  <%= f.label :tipo_sangre %><br>
-  <%= f.collection_select(:tipo_sangre, @registros.buscar_tabla(3) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false}) %><br>
-  <%= f.label :peso %><br>
-  <%= f.text_field :peso %><br>
-  <%= f.label :altura %><br>
-  <%= f.text_field :altura %><br>
-  <%= f.label :alergias %><br>
-  <%= f.text_area :alergias %><br>
-  <%= f.label :fumador %><br>
-  <%= f.check_box :fumador %><br>
-  <%= f.label :ocupacion %><br>
-  <%= f.text_field :ocupacion %><br>
-  <%= f.label :antecedentes_lesiones %><br>
-  <%= f.text_area :antecedentes_lesiones %><br>
-  <%= f.label :antecedentes_familiares %><br>
-  <%= f.text_area :antecedentes_familiares %><br>
-  <%= f.label :condicion_medica_actual %><br>
-  <%= f.text_area :condicion_medica_actual %><br>
-  <%= f.label :cirugias %><br>
-  <%= f.text_area :cirugias %><br>
-  <%= f.label :reg_its_sida %><br>
-  <%= f.check_box :reg_its_sida %><br>
-</fieldset>
+<h3> Antecedentes Personales </h3>
+<table class = "noborder">
+  <tr class = "noborder">
+    <td class = "noborder">
+      <%= f.label :tipo_sangre %><br>
+      <%= f.collection_select(:tipo_sangre, @registros.buscar_tabla(3) , :rec_varchar, :rec_varchar, {:include_blank => true}, {:multiple => false}) %>
+    </td>
+    <td class = "noborder">
+      <%= f.label :peso %><br>
+      <%= f.text_field :peso %>
+    </td>
+    <td class = "noborder">
+      <%= f.label :altura %><br>
+      <%= f.text_field :altura %>
+    </td>
+    <td class = "noborder">
+      <%= f.label :alergias %><br>
+      <%= f.text_area :alergias %>
+    </td>
+  </tr>
+  <tr class = "noborder">
+    <td class = "noborder">
+      <%= f.label :fumador %><br>
+      <%= f.check_box :fumador %>
+    </td>
+    <td class = "noborder">
+      <%= f.label :ocupacion %><br>
+      <%= f.text_field :ocupacion %>
+    </td>
+    <td class = "noborder">
+      <%= f.label :antecedentes_lesiones %><br>
+      <%= f.text_area :antecedentes_lesiones %>
+    </td>
+    <td class = "noborder">
+      <%= f.label :antecedentes_familiares %><br>
+      <%= f.text_area :antecedentes_familiares %>
+    </td>
+  </tr>
+    <td class = "noborder">
+      <%= f.label :condicion_medica_actual %><br>
+      <%= f.text_area :condicion_medica_actual %>
+    </td>
+    <td class = "noborder">
+      <%= f.label :cirugias %><br>
+      <%= f.text_area :cirugias %>
+    </td>
+    <td class = "noborder">
+      <%= f.label :reg_its_sida %><br>
+      <%= f.check_box :reg_its_sida %>
+    </td>
+</table>

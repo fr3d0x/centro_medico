@@ -11,10 +11,20 @@
 </p>
 
 <p>
-  <strong>Informe medico:</strong>
-  <%= @appointment_report.informe_medico %>
-</p><br><br>
+  <strong>Reposo:</strong>
+  <%= @appointment_report.reposo %>
+</p>
 
+<p>
+  <strong>Examenes Solicitados:</strong>
+  <%= @appointment_report.examenes_solicitados %>
+</p>
+<br><br>
+
+<%if @appointment_report.appointment %>
 <%= link_to "Imprimir Informe medico (pdf)", appointment_report_path( @appointment_report, :format => 'pdf'), target: "_blank" %> |
+<%else%>
+<%= link_to "Imprimir Informe medico (pdf)", pediatric_report_appointment_reports_path( id: @appointment_report.id, :format => 'pdf'), target: "_blank" %> |
+<%end%>
 <%= link_to 'Editar Reporte', edit_appointment_report_path(@appointment_report) %> |
 <%= link_to 'Atras', citas_del_dia_appointments_path %>

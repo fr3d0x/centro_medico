@@ -1,5 +1,6 @@
 class PediatricPatientsController < ApplicationController
   before_action :set_pediatric_patient, only: [:show, :edit, :update, :destroy, :ya_es_mayor]
+  before_action :authenticate_user!
 
   # GET /pediatric_patients
   # GET /pediatric_patients.json
@@ -41,7 +42,7 @@ class PediatricPatientsController < ApplicationController
 
     respond_to do |format|
       if @pediatric_patient.save
-        format.html { redirect_to @pediatric_patient, notice: 'Pediatric patient was successfully created.' }
+        format.html { redirect_to @pediatric_patient, notice: 'Paciente creado con exito' }
         format.json { render :show, status: :created, location: @pediatric_patient }
       else
         format.html { render :new }
@@ -55,7 +56,7 @@ class PediatricPatientsController < ApplicationController
   def update
     respond_to do |format|
       if @pediatric_patient.update(pediatric_patient_params)
-        format.html { redirect_to @pediatric_patient, notice: 'Pediatric patient was successfully updated.' }
+        format.html { redirect_to @pediatric_patient, notice: 'Datos Actualizados con exito.' }
         format.json { render :show, status: :ok, location: @pediatric_patient }
       else
         format.html { render :edit }
@@ -69,7 +70,7 @@ class PediatricPatientsController < ApplicationController
   def destroy
     @pediatric_patient.destroy
     respond_to do |format|
-      format.html { redirect_to pediatric_patients_url, notice: 'Pediatric patient was successfully destroyed.' }
+      format.html { redirect_to pediatric_patients_url, notice: 'Paciente borrado con exito.' }
       format.json { head :no_content }
     end
   end
@@ -86,6 +87,6 @@ class PediatricPatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pediatric_patient_params
-      params.require(:pediatric_patient).permit(:id, :nombre, :apellido, :fecha_nacimiento, :fecha_ingreso, :telefono_padre, :telefono_madre, :pediatric_history_attributes => [:id, :edad, :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :ced_padre, :madre, :ced_madre, :diagnostico_familiar, :antecedentes_prenatales, :antecedentes_natales, :antecedentes_postnatales, :sintomas_generales])
+      params.require(:pediatric_patient).permit(:id, :nombre, :apellido, :fecha_nacimiento, :fecha_ingreso, :telefono_padre, :telefono_madre, :pediatric_history_attributes => [:id, :genero, :peso, :talla, :lugar_nacimiento, :lugar_residencia, :padre, :ced_padre, :madre, :ced_madre, :diagnostico_familiar, :antecedentes_prenatales, :antecedentes_natales, :antecedentes_postnatales, :sintomas_generales])
     end
 end

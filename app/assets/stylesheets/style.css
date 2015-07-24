@@ -3,6 +3,21 @@ html, body {
 	font-family: 'Lato', sans-serif;
 	background-color: #FFFFFA;
 }
+.btnnav {
+  background-color: #037E8C;
+  -moz-border-radius:1px;
+  -webkit-border-radius:1px;
+  border-radius: 1px;
+  border-radius:1px;
+  display:inline-block;
+  cursor:pointer;
+  color:#FFFFFA;
+  font-size:0.95em;
+  font-weight:normal;
+  margin:1.3em 1.8em;
+  padding: 15px 0px 15px 0px;
+  text-decoration:none;
+}
 .box-ap{
 	width: 80%;
 	margin: 0 auto;
@@ -59,4 +74,7 @@ th {
 }
 .orden {
 	width: 5em;
+}
+.noborder {
+	border: none;
 }

@@ -1,5 +1,6 @@
 class PediatricAppointmentsController < ApplicationController
   before_action :set_pediatric_appointment, only: [:show, :edit, :update, :destroy, :cancelar, :reactivar]
+  before_action :authenticate_user!
 
   # GET /pediatric_appointments
   # GET /pediatric_appointments.json
@@ -22,6 +23,15 @@ class PediatricAppointmentsController < ApplicationController
       @pediatric_appointments = PediatricAppointment.search(params[:search]).where(doctor_id: doctor.id).order(:hora).paginate(:per_page => 4, :page => params[:page])
     else
       @pediatric_appointments = PediatricAppointment.search(params[:search]).order(:hora).paginate(:per_page => 4, :page => params[:page])
+    end
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = PediatricAppointmentsPdf.new(@pediatric_appointments)
+        send_data pdf.render, filename: "citas_pediatricas_del_dia_#{params[:search]}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
     end
   end
 
@@ -96,7 +106,7 @@ class PediatricAppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @pediatric_appointment.update(pediatric_appointment_params)
-        format.html { redirect_to @pediatric_appointment, notice: 'Pediatric appointment was successfully updated.' }
+        format.html { redirect_to @pediatric_appointment, notice: 'Cita actualizada con exito' }
         format.json { render :show, status: :ok, location: @pediatric_appointment }
       else
         format.html { render :edit }
@@ -110,7 +120,7 @@ class PediatricAppointmentsController < ApplicationController
   def destroy
     @pediatric_appointment.destroy
     respond_to do |format|
-      format.html { redirect_to pediatric_appointments_url, notice: 'Pediatric appointment was successfully destroyed.' }
+      format.html { redirect_to pediatric_appointments_url, notice: 'Cita borrada con exito' }
       format.json { head :no_content }
     end
   end
@@ -123,6 +133,6 @@ class PediatricAppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pediatric_appointment_params
-      params.require(:pediatric_appointment).permit(:fecha, :hora, :motivo, :responsable, :telefono, :relacion, :patient_id, :pediatric_patient_id, :doctor_id)
+      params.require(:pediatric_appointment).permit(:fecha, :hora, :motivo, :responsable, :telefono, :relacion, :patient_id, :estado, :pediatric_patient_id, :doctor_id)
     end
 end

@@ -1,5 +1,6 @@
  class AppointmentReportsController < ApplicationController
-  before_action :set_appointment_report, only: [:show, :edit, :update, :destroy]
+  before_action :set_appointment_report, only: [:show, :edit, :update, :destroy, :pediatric_report]
+  before_action :authenticate_user!
 
   # GET /appointment_reports
   # GET /appointment_reports.json
@@ -21,10 +22,23 @@
     end
   end
 
+  def pediatric_report
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = PediatricAppointmentReportPdf.new(@appointment_report)
+        send_data pdf.render, filename: "Reporte_medico_de_cita_#{@appointment_report.pediatric_appointment.id.to_s.rjust(4, '0')}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
+  end
+
   # GET /appointment_reports/new
   def new
     @appointment_report = AppointmentReport.new
     @appointment_report.appointment_id = params[:appointment_id] if params.has_key?(:appointment_id)
+    @appointment_report.pediatric_appointment_id = params[:pediatric_appointment_id] if params.has_key?(:pediatric_appointment_id)
   end
 
   # GET /appointment_reports/1/edit
@@ -38,7 +52,7 @@
 
     respond_to do |format|
       if @appointment_report.save
-        format.html { redirect_to appointments_path, notice: 'Reporte creado con exito.' }
+        format.html { redirect_to @appointment_report, notice: 'Reporte creado con exito.' }
         format.json { render :show, status: :created, location: @appointment_report }
       else
         format.html { render :new }
@@ -79,6 +93,6 @@
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_report_params
-      params.require(:appointment_report).permit(:motivo, :diagnostico, :tratamiento, :informe_medico, :appointment_id)
+      params.require(:appointment_report).permit(:motivo, :diagnostico, :tratamiento, :reposo, :examenes_solicitados, :appointment_id, :pediatric_appointment_id)
     end
 end

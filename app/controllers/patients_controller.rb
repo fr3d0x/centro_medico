@@ -1,8 +1,12 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:show, :edit, :update, :destroy, :nuevo_paciente_desde_cita]
+  before_action :authenticate_user!
 
   # GET /patients
   # GET /patients.json
+  def nuevo_paciente_desde_cita
+  end
+  
   def index
     @patients = Patient.search(params[:search]).paginate(:per_page => 6, :page => params[:page])
   end
@@ -42,7 +46,7 @@ class PatientsController < ApplicationController
     respond_to do |format|
       if @patient.save
         @patient.update_attribute(:num_hist_medica, @patient.medical_history.id)
-        format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
+        format.html { redirect_to @patient, notice: 'El paciente ha sido creado con exito.' }
         format.json { render :show, status: :created, location: @patient }
       else
         format.html { render :new }
@@ -56,7 +60,7 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
+        format.html { redirect_to @patient, notice: 'Datos actualizados con exito.' }
         format.json { render :show, status: :ok, location: @patient }
       else
         format.html { render :edit }
@@ -70,7 +74,7 @@ class PatientsController < ApplicationController
   def destroy
     @patient.destroy
     respond_to do |format|
-      format.html { redirect_to patients_url, notice: 'Patient was successfully destroyed.' }
+      format.html { redirect_to patients_url, notice: 'El paciente ha sido borrado con exito.' }
       format.json { head :no_content }
     end
   end
@@ -83,6 +87,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:id, :cedula, :num_hist_medica, :apellido, :nombre, :fecha_nacimiento, :edad, :fecha_ingreso, :estado_civil, :telefono, :direccion, :medical_history_attributes => [:id, :tipo_sangre, :peso, :altura, :posee_alergias, :alergias, :fumador, :ocupacion, :antecedentes_lesiones, :antecedentes_familiares, :condicion_medica_actual, :cirugias, :reg_its_sida])
+      params.require(:patient).permit(:id, :cedula, :num_hist_medica, :apellido, :nombre, :fecha_nacimiento, :fecha_ingreso, :estado_civil, :telefono, :sexo, :direccion, :medical_history_attributes => [:id, :tipo_sangre, :peso, :altura, :posee_alergias, :alergias, :fumador, :ocupacion, :antecedentes_lesiones, :antecedentes_familiares, :condicion_medica_actual, :cirugias, :reg_its_sida])
     end
 end

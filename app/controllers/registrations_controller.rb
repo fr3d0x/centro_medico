@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
 	private
 
 	def configure_devise_permitted_parameters
-		registration_params = [:nombre, :apellido, :tipo, :cedula, :email, :password, :password_confirmation, :reset_password_token, :reset_password_sent_at, :remember_created_at, :daw_persona_attributes => [:pers_primernom, :pers_primerape, :pers_tipopers]]
+		registration_params = [:username, :nombre, :apellido, :tipo, :cedula, :email, :password, :password_confirmation, :reset_password_token, :reset_password_sent_at, :remember_created_at, :daw_persona_attributes => [:pers_primernom, :pers_primerape, :pers_tipopers]]
 		if params[:action] == 'update'
 			devise_parameter_sanitizer.for(:account_update) {
 				|u|	u.permit(registration_params << :current_password)	
@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def after_sign_up_path_for(resource)
 		if resource.tipo == "medico"
-    		doctor = Doctor.create(nombre: resource.nombre, apellido: resource.apellido, cedula: resource.cedula, user_id: resource.id)
+    		doctor = Doctor.create(nombre: resource.nombre, apellido: resource.apellido, cedula: resource.cedula, user_id: resource.id, especialidad: "por indicar", telefono1: "por indicar", direccion: "La direccion de residencia no ha sido indicada")
     		return edit_doctor_path(doctor)
    		else
    			after_sign_in_path_for(resource)

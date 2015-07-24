@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :cancelar, :reactivar]
+  before_action :authenticate_user!
 
   # GET /appointments
   # GET /appointments.json
@@ -8,16 +9,25 @@ class AppointmentsController < ApplicationController
       doctor = Doctor.find_by(user_id: current_user.id)
       @appointments = Appointment.search(params[:search]).where(doctor_id: doctor.id).order(:hora).paginate(:per_page => 6, :page => params[:page])
     else
-      @appointments = Appointment.all.search(params[:search]).paginate(:per_page => 4, :page => params[:page])
+      @appointments = Appointment.search(params[:search]).paginate(:per_page => 4, :page => params[:page])
     end
   end
 
   def citas_del_dia
     if current_user.tipo == "medico"
       doctor = Doctor.find_by(user_id: current_user.id)
-      @appointments = Appointment.search(params[:search]).where(doctor_id: doctor.id).order(:hora).paginate(:per_page => 4, :page => params[:page])
+      @appointments = Appointment.search(params[:search]).where(doctor_id: doctor.id).order(:hora).paginate(:per_page => 4, :page => params[:page]) 
     else
       @appointments = Appointment.search(params[:search]).order(:hora).paginate(:per_page => 4, :page => params[:page])
+    end
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = AppointmentsPdf.new(@appointments)
+        send_data pdf.render, filename: "citas_del_dia_#{params[:search]}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
     end
   end
 
@@ -41,12 +51,12 @@ class AppointmentsController < ApplicationController
 
   def cancelar
     @appointment.update_attribute(:estado, false)
-    redirect_to itas_del_dia_appointments_path
+    redirect_to citas_del_dia_appointments_path
   end
 
   def reactivar
     @appointment.update_attribute(:estado, true)
-    redirect_to itas_del_dia_appointments_path
+    redirect_to citas_del_dia_appointments_path
   end
 
   # POST /appointments
@@ -70,10 +80,10 @@ class AppointmentsController < ApplicationController
           end
         end
         else
-          paciente = Patient.create(nombre: "no indicado", apellido: "no indicado", telefono: "no indicado", edad: "0", cedula: params[:cedula_paciente])
+          paciente = Patient.create(nombre: "no indicado", apellido: "no indicado", telefono: "no indicado", cedula: params[:cedula_paciente], fecha_nacimiento: DateTime.now.to_date)
           @appointment.patient_id = paciente.id
           if @appointment.save
-            redirect_to edit_patient_path(paciente), notice: 'Cita creada con exito.'   
+            redirect_to nuevo_paciente_desde_cita_patients_path(:id => paciente.id), notice: 'Cita creada con exito.'   
           else
             respond_to do |format|
             format.html { render :new }
