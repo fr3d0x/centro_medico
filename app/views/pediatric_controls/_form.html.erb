@@ -148,10 +148,11 @@
     <%= f.fields_for :growth_controls do |builder| %>
       <%= render 'growth_control_fields', f: builder %>
     <%end%>
-  <div>
-    <%= link_to_add_fields "Agregar Control de Crecimiento",f, :growth_controls  %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+    <div>
+      <%= link_to_add_fields "Agregar Control de Crecimiento",f, :growth_controls  %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Guardar" %>
+    </div>
   </div>
 <% end %>
